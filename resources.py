@@ -1,30 +1,12 @@
 # Defina os dados iniciais
+import random
+
+
 professores = ["Adauto Trigueiro", "Aêda Monalliza", "Ariane Nunes", "Brunno Wagner", "Cleiton Soares", "Cleyton Mário",
                "Cleverton Anderson", "Emanoel Francisco", "Erton Wagner", "Ewerton Menezes", "Fellipe Anchiêta", "Helaine Solange",
                "Higor Ricardo", "Ivaldir Honório", "Victor Afonso", "Maurício Costa", "Milton Perceus", "Paulo Cavalcante", "Dâmocles Aurélio"]
 
 #Definindo a disponibilidade dos professores
-professores_horario = {
-    "Adauto Trigueiro": [1, 2, 3],
-    "Aêda Monalliza": [1, 2, 3],
-    "Ariane Nunes": [1, 2, 3],
-    "Brunno Wagner": [1, 2, 3],
-    "Cleiton Soares": [1, 2, 3],
-    "Cleyton Mário": [1, 2, 3],
-    "Cleverton Anderson": [1, 2, 3],
-    "Emanoel Francisco": [1, 2, 3],
-    "Erton Wagner": [1, 2, 3],
-    "Ewerton Menezes": [1, 2, 3],
-    "Fellipe Anchiêta": [1, 2, 3],
-    "Helaine Solange": [1, 2, 3],
-    "Higor Ricardo": [1, 2, 3],
-    "Ivaldir Honório": [1, 2, 3],
-    "Victor Afonso": [1, 2, 3],
-    "Maurício Costa": [1, 2, 3],
-    "Milton Perceus": [1, 2, 3],
-    "Paulo Cavalcante": [1, 2, 3],
-    "Dâmocles Aurélio": [1, 2, 3]
-}
 
 num_periodos = 4 # Só vão existir 4 períodos por semestre. Exemplo 1: 1°, 3°, 5° e 7°; Exemplo 2: 2°, 4°, 6° e 8° - Só tem essas 2 opções e o usuário que vai escolher qual ele quer.
 num_dias_da_semana = 5
@@ -33,6 +15,144 @@ total_cadeiras_por_periodo = [7, 7, 7, 7, 7, 7, 7, 6]  # Número de cadeiras por
 dias_da_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
 horarios_manha = ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"]
 horarios_tarde = ["13h30", "14h30", "15h30", "16h30"]
+
+
+
+professores_horario = {
+    "Adauto Trigueiro": {
+        "Segunda": ["7h30", "8h20", "9h10"],
+        "Terça": [],
+        "Quarta": [],
+        "Quinta": ["14h30","15h30","16h30"],
+        "Sexta": []
+    },
+    "Aêda Monalliza": {
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": ["7h30","8h20"],
+        "Quinta": [],
+        "Sexta": ["10h50","11h40"],
+    },
+    "Ariane Nunes": {
+        "Segunda": ["9h10","10h00"],
+        "Terça": ["14h30","15h30","16h30"],
+        "Quarta": [],
+        "Quinta": [],
+        "Sexta": []
+    },
+    "Brunno Wagner": {
+        "Segunda": ["7h30", "8h20", "9h10"],
+        "Terça": [],
+        "Quarta": ["10h50","11h40"],
+        "Quinta": [],
+        "Sexta": ["10h50","11h40"],
+    },
+    "Cleiton Soares": {
+        "Segunda": ["8h20"],
+        "Terça": [],
+        "Quarta": ["14h30"],
+        "Quinta": [],
+        "Sexta": ["16h30"]
+    },
+    "Cleyton Mário": {
+        "Segunda": [],
+        "Terça": ["7h30"],
+        "Quarta": [],
+        "Quinta": ["9h10"],
+        "Sexta": []
+    },
+    "Cleverton Anderson": {
+        "Segunda": ["10h00"],
+        "Terça": [],
+        "Quarta": [],
+        "Quinta": [],
+        "Sexta": ["15h30"]
+    },
+    "Emanoel Francisco": {
+        "Segunda": [],
+        "Terça": ["11h40"],
+        "Quarta": [],
+        "Quinta": ["13h30"],
+        "Sexta": []
+    },
+    "Erton Wagner": {
+        "Segunda": ["7h30", "8h20", "9h10"],
+        "Terça": [],
+        "Quarta": ["13h30"],
+        "Quinta": [],
+        "Sexta": ["15h30"]
+    },
+    "Ewerton Menezes": {
+        "Segunda": [],
+        "Terça": ["9h10"],
+        "Quarta": [],
+        "Quinta": ["11h40"],
+        "Sexta": ["13h30"]
+    },
+    "Fellipe Anchiêta": {
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": ["14h30"],
+        "Quinta": [],
+        "Sexta": ["16h30"]
+    },
+    "Helaine Solange": {
+        "Segunda": [],
+        "Terça": ["8h20"],
+        "Quarta": [],
+        "Quinta": ["10h00"],
+        "Sexta": []
+    },
+    "Higor Ricardo": {
+        "Segunda": ["15h30"],
+        "Terça": [],
+        "Quarta": ["7h30"],
+        "Quinta": [],
+        "Sexta": []
+    },
+    "Ivaldir Honório": {
+        "Segunda": ["7h30", "8h20", "9h10"],
+        "Terça": ["10h50"],
+        "Quarta": [],
+        "Quinta": ["8h20"],
+        "Sexta": ["9h10"]
+    },
+    "Victor Afonso": {
+        "Segunda": ["16h30"],
+        "Terça": [],
+        "Quarta": ["11h40"],
+        "Quinta": ["7h30"],
+        "Sexta": []
+    },
+    "Maurício Costa": {
+        "Segunda": ["13h30"],
+        "Terça": ["14h30"],
+        "Quarta": ["9h10"],
+        "Quinta": [],
+        "Sexta": ["10h50"]
+    },
+    "Milton Perceus": {
+        "Segunda": [],
+        "Terça": ["16h30"],
+        "Quarta": [],
+        "Quinta": [],
+        "Sexta": []
+    },
+    "Paulo Cavalcante": {
+        "Segunda": ["7h30", "8h20", "9h10"],
+        "Terça": [],
+        "Quarta": ["10h00"],
+        "Quinta": [],
+        "Sexta": ["15h30"]
+    },
+    "Dâmocles Aurélio": {
+        "Segunda": ["9h10"],
+        "Terça": [],
+        "Quarta": ["8h20"],
+        "Quinta": [],
+        "Sexta": ["7h30"]
+    }
+}
 
 disciplina_por_periodo = {
     1:[
