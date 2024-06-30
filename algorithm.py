@@ -1,6 +1,8 @@
 import random
 from resources import disciplina_por_periodo, carga_horaria_por_periodo, responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde
 
+PENALIDADE_HARD = 100
+PENALIDADE_SOFT = 10
 
 def criar_cromossomo(caso):
     if caso == 1:
@@ -41,25 +43,57 @@ def criar_cromossomo(caso):
                     alocado = False
                     tentativas = 0
 
-                    while not alocado and tentativas < 10:  # Limite de tentativas para alocar
+                    while not alocado and tentativas < 20:  # Limite de tentativas para alocar
                         tentativas += 1
                         dia = random.choice(dias_da_semana)
-                        slots_disponiveis = []
+                        slots_disponiveis_manha = []
+                        slots_disponiveis_tarde = []
 
                         # Encontrar slots disponíveis no dia selecionado
-                        for slot in range(len(horarios_manha + horarios_tarde)):
+                        for slot in range(len(horarios_manha)):
                             if len(aulas_distribuidas[dia][slot]) == 0:  # Verifica se o slot está vazio
-                                slots_disponiveis.append(slot)
+                                slots_disponiveis_manha.append(slot)
+                        for slot in range(len(horarios_manha), len(horarios_manha + horarios_tarde)):
+                            if len(aulas_distribuidas[dia][slot]) == 0:  # Verifica se o slot está vazio
+                                slots_disponiveis_tarde.append(slot)
 
-                        if slots_disponiveis:
-                            slot_escolhido = random.choice(slots_disponiveis)
+                        if slots_disponiveis_manha:
+                            slot_escolhido = random.choice(slots_disponiveis_manha)
                             aulas_distribuidas[dia][slot_escolhido].append((disciplina, professor_escolhido))
                             alocado = True
+                        elif slots_disponiveis_tarde:
+                            slot_escolhido = random.choice(slots_disponiveis_tarde)
+                            aulas_distribuidas[dia][slot_escolhido].append((disciplina, professor_escolhido))
+                            alocado = True
+
+                    if not alocado:
+                        raise ValueError(f"Não foi possível alocar {aulas_semanais} aulas de {disciplina} para o professor {professor_escolhido}")
 
         aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
 
     return aulas_distribuidas_por_periodo
 
+def calcular_penalidades(cromossomo):
+    penalidades = 0
+
+    for periodo in cromossomo:
+        for dia in cromossomo[periodo]:
+            for slot, aulas in enumerate(cromossomo[periodo][dia]):
+                # Penalidade soft: Livrar os horários da tarde ao máximo
+                if slot >= len(horarios_manha) and aulas:
+                    penalidades += PENALIDADE_SOFT
+
+                # Exemplo de penalidade hard: Verificar conflitos de professores
+                # professores_no_slot = [aula[1] for aula in aulas]
+                # if len(professores_no_slot) != len(set(professores_no_slot)):
+                #     penalidades += PENALIDADE_HARD
+
+    return penalidades
+
+def calcular_fitness(cromossomo):
+    penalidades = calcular_penalidades(cromossomo)
+    fitness = 100 / (100 + penalidades)
+    return fitness
 
 def gerar_tabela_html_do_cromossomo(cromossomo, caso):
     if caso == 1:
@@ -107,9 +141,14 @@ def salvar_html(html, nome_arquivo):
     with open(nome_arquivo, 'w', encoding='utf-8') as file:
         file.write(html)
     print(f"Arquivo '{nome_arquivo}' salvo com sucesso.")
+
 # Exemplo de uso:
 caso = 1  # Defina o caso que você quer gerar (1 ou 2)
 horarios_por_periodo = criar_cromossomo(caso)
+
+# Calcular fitness do cromossomo gerado
+fitness = calcular_fitness(horarios_por_periodo)
+print(f"Fitness do cromossomo: {fitness}")
 
 # Gerar tabela HTML
 html_tabela = gerar_tabela_html_do_cromossomo(horarios_por_periodo, caso)
