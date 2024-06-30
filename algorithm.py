@@ -72,23 +72,31 @@ def criar_cromossomo(caso):
         aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
 
     return aulas_distribuidas_por_periodo
-
 def calcular_penalidades(cromossomo):
     penalidades = 0
 
     for periodo in cromossomo:
+        disciplinas_periodo = set(disciplina_por_periodo[periodo])
+        disciplinas_alocadas = set()
+
         for dia in cromossomo[periodo]:
             for slot, aulas in enumerate(cromossomo[periodo][dia]):
                 # Penalidade soft: Livrar os horários da tarde ao máximo
                 if slot >= len(horarios_manha) and aulas:
                     penalidades += PENALIDADE_SOFT
 
-                # Exemplo de penalidade hard: Verificar conflitos de professores
-                # professores_no_slot = [aula[1] for aula in aulas]
-                # if len(professores_no_slot) != len(set(professores_no_slot)):
-                #     penalidades += PENALIDADE_HARD
+                # Coletar disciplinas alocadas
+                for aula in aulas:
+                    disciplinas_alocadas.add(aula[0])
+                    
+        # Penalidade hard: Verificar se todas as disciplinas do período estão ofertadas
+        disciplinas_nao_ofertadas = disciplinas_periodo - disciplinas_alocadas
+        if disciplinas_nao_ofertadas:
+            penalidades += PENALIDADE_HARD * len(disciplinas_nao_ofertadas)
+            print(f"Período {periodo} - Disciplinas não ofertadas: {disciplinas_nao_ofertadas}")
 
     return penalidades
+
 
 def calcular_fitness(cromossomo):
     penalidades = calcular_penalidades(cromossomo)
