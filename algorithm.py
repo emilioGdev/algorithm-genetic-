@@ -27,6 +27,8 @@ def criar_cromossomo(caso):
                 professor_escolhido = random.choice(professores_disponiveis)
 
                 # Calcular número de aulas semanais com base na carga horária
+                # Aqui a regra "Dependendo da necessidade pode quebrar uma disciplina em dois dias" está sendo aplicada,
+                # estou dividindo a quantidade de aulas a partir da carga horária total dela
                 if carga_horaria == 90:
                     aulas_semanais = 6
                 elif carga_horaria == 60:
