@@ -22,12 +22,12 @@ professores_horario = {
     "Adauto Trigueiro": {
         "Segunda": ["7h30", "8h20", "9h10"],
         "Terça": [],
-        "Quarta": [],
+        "Quarta": ["14h30","15h30","16h30"],
         "Quinta": ["14h30","15h30","16h30"],
         "Sexta": []
     },
     "Aêda Monalliza": {
-        "Segunda": [],
+        "Segunda": ["7h30", "8h20", "9h10"],
         "Terça": [],
         "Quarta": ["7h30","8h20"],
         "Quinta": [],
@@ -37,7 +37,7 @@ professores_horario = {
         "Segunda": ["9h10","10h00"],
         "Terça": ["14h30","15h30","16h30"],
         "Quarta": [],
-        "Quinta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
         "Sexta": []
     },
     "Brunno Wagner": {
@@ -52,82 +52,82 @@ professores_horario = {
         "Terça": [],
         "Quarta": ["14h30"],
         "Quinta": [],
-        "Sexta": ["16h30"]
+        "Sexta": ["7h30", "8h20", "9h10", "10h50"],
     },
     "Cleyton Mário": {
         "Segunda": [],
-        "Terça": ["7h30"],
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
         "Quarta": [],
-        "Quinta": ["9h10"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
         "Sexta": []
     },
     "Cleverton Anderson": {
-        "Segunda": ["10h00"],
-        "Terça": [],
+        "Segunda": ["7h30", "8h20", "9h10", "10h50"],
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
         "Quarta": [],
         "Quinta": [],
-        "Sexta": ["15h30"]
+        "Sexta": []
     },
     "Emanoel Francisco": {
         "Segunda": [],
-        "Terça": ["11h40"],
-        "Quarta": [],
-        "Quinta": ["13h30"],
-        "Sexta": []
+        "Terça": [],
+        "Quarta":["7h30", "8h20", "9h10", "10h50"],
+        "Quinta":[],
+        "Sexta": ["7h30", "8h20", "9h10", "10h50"]
     },
     "Erton Wagner": {
         "Segunda": ["7h30", "8h20", "9h10"],
         "Terça": [],
-        "Quarta": ["13h30"],
+        "Quarta": [],
         "Quinta": [],
-        "Sexta": ["15h30"]
+        "Sexta": ["7h30", "8h20", "9h10", "10h50"]
     },
     "Ewerton Menezes": {
         "Segunda": [],
-        "Terça": ["9h10"],
-        "Quarta": [],
-        "Quinta": ["11h40"],
-        "Sexta": ["13h30"]
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
+        "Quinta": [],
+        "Sexta": []
     },
     "Fellipe Anchiêta": {
         "Segunda": [],
-        "Terça": [],
+        "Terça": [["7h30", "8h20", "9h10", "10h50"]],
         "Quarta": ["14h30"],
-        "Quinta": [],
+        "Quinta": [["7h30", "8h20", "9h10", "10h50"]],
         "Sexta": ["16h30"]
     },
     "Helaine Solange": {
-        "Segunda": [],
+        "Segunda": ["7h30", "8h20", "9h10", "10h50"],
         "Terça": ["8h20"],
-        "Quarta": [],
+        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
         "Quinta": ["10h00"],
         "Sexta": []
     },
     "Higor Ricardo": {
         "Segunda": ["15h30"],
-        "Terça": [],
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
         "Quarta": ["7h30"],
-        "Quinta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
         "Sexta": []
     },
     "Ivaldir Honório": {
         "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": ["10h50"],
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
         "Quarta": [],
         "Quinta": ["8h20"],
         "Sexta": ["9h10"]
     },
     "Victor Afonso": {
-        "Segunda": ["16h30"],
+        "Segunda": ["7h30", "8h20", "9h10", "10h50"],
         "Terça": [],
-        "Quarta": ["11h40"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
         "Quinta": ["7h30"],
         "Sexta": []
     },
     "Maurício Costa": {
         "Segunda": ["13h30"],
-        "Terça": ["14h30"],
-        "Quarta": ["9h10"],
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
         "Quinta": [],
         "Sexta": ["10h50"]
     },

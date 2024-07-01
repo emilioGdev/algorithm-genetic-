@@ -188,7 +188,7 @@ def salvar_html(html, nome_arquivo):
     print(f"Arquivo '{nome_arquivo}' salvo com sucesso.")
 
 # Exemplo de uso:
-caso = 1  # Defina o caso que você quer gerar (1 ou 2)
+caso = 2  # Defina o caso que você quer gerar (1 ou 2)
 horarios_por_periodo = criar_cromossomo(caso)
 
 # Calcular fitness do cromossomo gerado
