@@ -156,78 +156,77 @@ professores_horario = {
 
 disciplina_por_periodo = {
     1:[
-    "Geometria Analítica",
-    "Programação I",
-    "Computação Ética e Sociedade",
-    "Empreendedorismo e Inovação",
-    "Cálculo I",
-    "Introdução à Computação",
-    "Disciplina Curricular de Extensão 1"
+    {"nome": "Geometria Analítica", "lab": False},
+    {"nome": "Programação I", "lab": True},
+    {"nome": "Computação Ética e Sociedade", "lab": False},
+    {"nome": "Empreendedorismo e Inovação", "lab": False},
+    {"nome": "Cálculo I", "lab": False},
+    {"nome": "Introdução à Computação", "lab": True},
+    {"nome": "Disciplina Curricular de Extensão 1", "lab": True}
 ],
     2:[
-    "Processos de Software",
-    "Álgebra Linear",
-    "Programação II",
-    "Matemática Discreta",
-    "Metodologia Científica",
-    "Cálculo II",
-    "Disciplina Curricular de Extensão 2"
+    {"nome": "Processos de Software", "lab": False},
+    {"nome": "Álgebra Linear", "lab": False},
+    {"nome": "Programação II", "lab": True},
+    {"nome": "Matemática Discreta", "lab": True},
+    {"nome": "Metodologia Científica", "lab": False},
+    {"nome": "Cálculo II", "lab": False},
+    {"nome": "Disciplina Curricular de Extensão 2", "lab": True}
 ],
     3:[
-    "Programação III",
-    "Engenharia de Requisitos",
-    "Projeto de Software",
-    "Estatística I",
-    "Banco de Dados",
-    "Algoritmos e Estruturas de Dados",
-    "Disciplina Curricular de Extensão 3"
+    {"nome": "Programação III", "lab": True},
+    {"nome": "Engenharia de Requisitos", "lab": False},
+    {"nome": "Projeto de Software", "lab": False},
+    {"nome": "Estatística I", "lab": False},
+    {"nome": "Banco de Dados", "lab": True},
+    {"nome": "Algoritmos e Estruturas de Dados", "lab": True},
+    {"nome": "Disciplina Curricular de Extensão 3", "lab": True}
 ],
     4:[
-    "Gerência de Configuração",
-    "Programação para Web",
-    "Padrões de Projeto",
-    "Estatística II",
-    "Organização e Arquitetura de Computadores",
-    "Teoria da Computação",
-    "Disciplina Curricular de Extensão 4"
+    {"nome": "Gerência de Configuração", "lab": True},
+    {"nome": "Programação para Web", "lab": True},
+    {"nome": "Padrões de Projeto", "lab": True},
+    {"nome": "Estatística II", "lab": False},
+    {"nome": "Organização e Arquitetura de Computadores", "lab": False},
+    {"nome": "Teoria da Computação", "lab": False},
+    {"nome": "Disciplina Curricular de Extensão 4", "lab": False}
 ],
     5: [
-    "Gerência de Projetos",
-    "Programação para Dispositivos Móveis",
-    "Verificação e Validação de Sistemas",
-    "Projeto I",
-    "Paradigmas de Linguagens de Programação",
-    "Redes de Computadores",
-    "Disciplina Curricular de Extensão 5"
+    {"nome": "Gerência de Projetos", "lab": False},
+    {"nome": "Programação para Dispositivos Móveis", "lab": True},
+    {"nome": "Verificação e Validação de Sistemas", "lab": False},
+    {"nome": "Projeto I", "lab": True},
+    {"nome": "Paradigmas de Linguagens de Programação", "lab": False},
+    {"nome": "Redes de Computadores", "lab": False},
+    {"nome": "Disciplina Curricular de Extensão 5", "lab": False}
 ],
     6: [
-    "Arquitetura de Software",
-    "Engenharia de Software Experimental",
-    "Integração de Sistemas",
-    "Inteligência Artificial",
-    "Interação Humano-Computador",
-    "Sistemas Operacionais",
-    "Disciplina Curricular de Extensão 6"
+    {"nome": "Arquitetura de Software", "lab": True},
+    {"nome": "Engenharia de Software Experimental", "lab": False},
+    {"nome": "Integração de Sistemas", "lab": False},
+    {"nome": "Inteligência Artificial", "lab": True},
+    {"nome": "Interação Humano-Computador", "lab": False},
+    {"nome": "Sistemas Operacionais", "lab": False},
+    {"nome": "Disciplina Curricular de Extensão 6", "lab": False}
 ],
     7:[
-    "Qualidade de Software",
-    "Segurança de Sistemas",
-    "Projeto II",
-    "Seminário em Engenharia de Software I",
-    "Cadeira Eletiva",
-    "Cadeira Eletiva",
-    "Disciplina Curricular de Extensão 7"
+    {"nome": "Qualidade de Software", "lab": False},
+    {"nome": "Segurança de Sistemas", "lab": False},
+    {"nome": "Projeto II", "lab": True},
+    {"nome": "Seminário em Engenharia de Software I", "lab": False},
+    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Disciplina Curricular de Extensão 7", "lab": False}
 ],
     8:[
-    "Manutenção e Evolução de Software",
-    "Seminário em Engenharia de Software II",
-    "Computação Gráfica e Sistemas Multimídia",
-    "Cadeira Eletiva",
-    "Cadeira Eletiva",
-    "Disciplina Curricular de Extensão 8"
+    {"nome": "Manutenção e Evolução de Software", "lab": True},
+    {"nome": "Seminário em Engenharia de Software II", "lab": False},
+    {"nome": "Computação Gráfica e Sistemas Multimídia", "lab": True},
+    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Disciplina Curricular de Extensão 8", "lab": False}
 ]
 }
-
 carga_horaria_por_periodo = {
     1: [60, 90, 30, 60, 60, 60, 45],
     2: [60, 60, 90, 60, 60, 60, 45],
