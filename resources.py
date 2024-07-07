@@ -22,20 +22,20 @@ professores_horario = {
     "Adauto Trigueiro": {
         "Segunda": ["7h30", "8h20", "9h10"],
         "Terça": [],
-        "Quarta": ["14h30","15h30","16h30"],
-        "Quinta": ["14h30","15h30","16h30"],
+        "Quarta": ["14h30", "15h30", "16h30"],
+        "Quinta": ["14h30", "15h30", "16h30"],
         "Sexta": []
     },
     "Aêda Monalliza": {
         "Segunda": ["7h30", "8h20", "9h10"],
         "Terça": [],
-        "Quarta": ["7h30","8h20"],
+        "Quarta": ["7h30", "8h20"],
         "Quinta": [],
-        "Sexta": ["10h50","11h40"],
+        "Sexta": ["10h50", "11h40"],
     },
     "Ariane Nunes": {
-        "Segunda": ["9h10","10h00"],
-        "Terça": ["14h30","15h30","16h30"],
+        "Segunda": ["9h10", "10h00"],
+        "Terça": ["14h30", "15h30", "16h30"],
         "Quarta": [],
         "Quinta": ["7h30", "8h20", "9h10", "10h50"],
         "Sexta": []
@@ -43,9 +43,9 @@ professores_horario = {
     "Brunno Wagner": {
         "Segunda": ["7h30", "8h20", "9h10"],
         "Terça": [],
-        "Quarta": ["10h50","11h40"],
+        "Quarta": ["10h50", "11h40"],
         "Quinta": [],
-        "Sexta": ["10h50","11h40"],
+        "Sexta": ["10h50", "11h40"],
     },
     "Cleiton Soares": {
         "Segunda": ["8h20"],
@@ -71,8 +71,8 @@ professores_horario = {
     "Emanoel Francisco": {
         "Segunda": [],
         "Terça": [],
-        "Quarta":["7h30", "8h20", "9h10", "10h50"],
-        "Quinta":[],
+        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
+        "Quinta": [],
         "Sexta": ["7h30", "8h20", "9h10", "10h50"]
     },
     "Erton Wagner": {
@@ -91,9 +91,9 @@ professores_horario = {
     },
     "Fellipe Anchiêta": {
         "Segunda": [],
-        "Terça": [["7h30", "8h20", "9h10", "10h50"]],
+        "Terça": ["7h30", "8h20", "9h10", "10h50"],
         "Quarta": ["14h30"],
-        "Quinta": [["7h30", "8h20", "9h10", "10h50"]],
+        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
         "Sexta": ["16h30"]
     },
     "Helaine Solange": {
@@ -257,7 +257,7 @@ responsabilidade_professores = {
     "Disciplina Curricular de Extensão 1": ["Ariane Nunes", "Dâmocles Aurélio"],
     "Processos de Software": ["Dâmocles Aurélio", "Cleyton Mário"],
     "Álgebra Linear": ["Ariane Nunes", "Cleiton Soares"],
-    "Programação II": ["Adauto Trigueiro", "Paulo Cavalcante"],
+    "Programação II": ["Adauto Trigueiro", "Paulo Cavalcante", "Emanoel Francisco", "Cleiton Soares"],
     "Matemática Discreta": ["Dâmocles Aurélio", "Cleiton Soares"],
     "Metodologia Científica": ["Emanoel Francisco", "Ariane Nunes"],
     "Cálculo II": ["Dâmocles Aurélio", "Cleyton Mário"],

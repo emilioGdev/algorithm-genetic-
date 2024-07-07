@@ -23,61 +23,90 @@ def criar_cromossomo(caso):
         disciplinas_periodo = disciplina_por_periodo[periodo]
         carga_horaria_periodo = carga_horaria_por_periodo[periodo]
 
-        # Inicializar lista de aulas distribuídas nos slots para o período atual
         aulas_distribuidas = {dia: [[] for _ in range(len(horarios_manha + horarios_tarde))] for dia in dias_da_semana}
 
         for disciplina_info, carga_horaria in zip(disciplinas_periodo, carga_horaria_periodo):
             disciplina = disciplina_info['nome']
             lab = disciplina_info['lab']
-            # Escolher o tipo de laboratório se a disciplina requer laboratório
             lab_tipo = escolher_lab_tipo() if lab else None
 
             if disciplina in responsabilidade_professores:
                 professores_disponiveis = responsabilidade_professores[disciplina]
                 professor_escolhido = random.choice(professores_disponiveis)
 
-                # Calcular número de aulas semanais com base na carga horária
                 if carga_horaria == 90:
-                    aulas_semanais = 6
-                elif carga_horaria == 60:
-                    aulas_semanais = 4
-                elif carga_horaria == 45:
-                    aulas_semanais = 3
-                elif carga_horaria == 30:
-                    aulas_semanais = 2
-                else:
-                    raise ValueError("Carga horária não suportada")
+                    aulas_semanais_dia1 = 4
+                    aulas_semanais_dia2 = 2
 
-                # Tentar distribuir todas as aulas semanais da disciplina
-                for _ in range(aulas_semanais):
-                    alocado = False
+                    alocado_dia1 = False
+                    alocado_dia2 = False
                     tentativas = 0
 
-                    while not alocado and tentativas < 20:  # Limite de tentativas para alocar
+                    while not (alocado_dia1 and alocado_dia2) and tentativas < 20:
                         tentativas += 1
                         dia = random.choice(dias_da_semana)
+
                         slots_disponiveis_manha = []
                         slots_disponiveis_tarde = []
 
-                        # Encontrar slots disponíveis no dia selecionado
-                        for slot in range(len(horarios_manha)):
-                            if len(aulas_distribuidas[dia][slot]) == 0 and (not lab or not labs_ocupados[dia][slot][lab_tipo]):
-                                slots_disponiveis_manha.append(slot)
-                        for slot in range(len(horarios_manha), len(horarios_manha + horarios_tarde)):
-                            if len(aulas_distribuidas[dia][slot]) == 0 and (not lab or not labs_ocupados[dia][slot][lab_tipo]):
-                                slots_disponiveis_tarde.append(slot)
+                        for slot_inicio in range(len(horarios_manha) - aulas_semanais_dia1 + 1):
+                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais_dia1)):
+                                slots_disponiveis_manha.append(slot_inicio)
+                        for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais_dia2 + 1):
+                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais_dia2)):
+                                slots_disponiveis_tarde.append(slot_inicio)
+
+                        if not alocado_dia1 and slots_disponiveis_manha:
+                            slot_escolhido = random.choice(slots_disponiveis_manha)
+                            for i in range(aulas_semanais_dia1):
+                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                if lab:
+                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
+                            alocado_dia1 = True
+                        elif not alocado_dia2 and slots_disponiveis_tarde:
+                            slot_escolhido = random.choice(slots_disponiveis_tarde)
+                            for i in range(aulas_semanais_dia2):
+                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                if lab:
+                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
+                            alocado_dia2 = True
+
+                    if not (alocado_dia1 and alocado_dia2):
+                        raise ValueError(f"Não foi possível alocar a carga horária de 90 horas da disciplina {disciplina}")
+
+                else:
+                    aulas_semanais = carga_horaria // 15  # 60 horas -> 4 aulas, 45 horas -> 3 aulas, 30 horas -> 2 aulas
+
+                    alocado = False
+                    tentativas = 0
+
+                    while not alocado and tentativas < 20:
+                        tentativas += 1
+                        dia = random.choice(dias_da_semana)
+
+                        slots_disponiveis_manha = []
+                        slots_disponiveis_tarde = []
+
+                        for slot_inicio in range(len(horarios_manha) - aulas_semanais + 1):
+                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
+                                slots_disponiveis_manha.append(slot_inicio)
+                        for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais + 1):
+                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
+                                slots_disponiveis_tarde.append(slot_inicio)
 
                         if slots_disponiveis_manha:
                             slot_escolhido = random.choice(slots_disponiveis_manha)
-                            aulas_distribuidas[dia][slot_escolhido].append((disciplina, professor_escolhido, lab_tipo))
-                            if lab:
-                                labs_ocupados[dia][slot_escolhido][lab_tipo] = True
+                            for i in range(aulas_semanais):
+                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                if lab:
+                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
                             alocado = True
                         elif slots_disponiveis_tarde:
                             slot_escolhido = random.choice(slots_disponiveis_tarde)
-                            aulas_distribuidas[dia][slot_escolhido].append((disciplina, professor_escolhido, lab_tipo))
-                            if lab:
-                                labs_ocupados[dia][slot_escolhido][lab_tipo] = True
+                            for i in range(aulas_semanais):
+                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                if lab:
+                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
                             alocado = True
 
                     if not alocado:
@@ -86,7 +115,6 @@ def criar_cromossomo(caso):
         aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
 
     return aulas_distribuidas_por_periodo
-
 def calcular_penalidades(cromossomo):
     penalidades = 0
 
@@ -188,7 +216,7 @@ def salvar_html(html, nome_arquivo):
     print(f"Arquivo '{nome_arquivo}' salvo com sucesso.")
 
 # Exemplo de uso:
-caso = 2  # Defina o caso que você quer gerar (1 ou 2)
+caso = 1  # Defina o caso que você quer gerar (1 ou 2)
 horarios_por_periodo = criar_cromossomo(caso)
 
 # Calcular fitness do cromossomo gerado
