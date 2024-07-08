@@ -1,10 +1,27 @@
 # Defina os dados iniciais
 import random
 
-
-professores = ["Adauto Trigueiro", "Aêda Monalliza", "Ariane Nunes", "Brunno Wagner", "Cleiton Soares", "Cleyton Mário",
-               "Cleverton Anderson", "Emanoel Francisco", "Erton Wagner", "Ewerton Menezes", "Fellipe Anchiêta", "Helaine Solange",
-               "Higor Ricardo", "Ivaldir Honório", "Victor Afonso", "Maurício Costa", "Milton Perceus", "Paulo Cavalcante", "Dâmocles Aurélio"]
+professores = ["Brunno Wagner",
+"Geovany Fernandes",
+"Emanoel Barreiros",
+"Renato Silvestre",
+"Ivaldir Honório",
+"Adauto Trigueiro",
+"Elvis Melo",
+"Cleverton Silva",
+"Ewerton Mendonça",
+"Milton Perceus",
+"Helaine Barreiros",
+"Cleiton Martins",
+"Elisson Rocha",
+"Marcello Mendonça",
+"Eraylson Galdino",
+"Ariane Nunes",
+"Victor Ferreira",
+"Felipe Barreto",
+"Aêda Monalliza",
+"Janaína Barros",
+"Mariana Maia"]
 
 #Definindo a disponibilidade dos professores
 
@@ -17,140 +34,153 @@ horarios_manha = ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"]
 horarios_tarde = ["13h30", "14h30", "15h30", "16h30"]
 
 
-
 professores_horario = {
     "Adauto Trigueiro": {
-        "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": [],
-        "Quarta": ["14h30", "15h30", "16h30"],
-        "Quinta": ["14h30", "15h30", "16h30"],
+        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": [],
+        "Quinta": [],
         "Sexta": []
     },
     "Aêda Monalliza": {
-        "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": [],
-        "Quarta": ["7h30", "8h20"],
+        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Quarta": [],
         "Quinta": [],
-        "Sexta": ["10h50", "11h40"],
+        "Sexta": [],
     },
     "Ariane Nunes": {
-        "Segunda": ["9h10", "10h00"],
-        "Terça": ["14h30", "15h30", "16h30"],
+        "Segunda": [],
+        "Terça": [],
         "Quarta": [],
-        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
-        "Sexta": []
+        "Quinta": ["13h30", "14h30", "15h30", "16h30"],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     },
     "Brunno Wagner": {
-        "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": [],
-        "Quarta": ["10h50", "11h40"],
+        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quinta": [],
-        "Sexta": ["10h50", "11h40"],
+        "Sexta": [],
     },
     "Cleiton Soares": {
-        "Segunda": ["8h20"],
-        "Terça": [],
-        "Quarta": ["14h30"],
-        "Quinta": [],
-        "Sexta": ["7h30", "8h20", "9h10", "10h50"],
-    },
-    "Cleyton Mário": {
         "Segunda": [],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": [],
-        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
-        "Sexta": []
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": [],
+        "Sexta": [],
     },
     "Cleverton Anderson": {
-        "Segunda": ["7h30", "8h20", "9h10", "10h50"],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
+        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
         "Quarta": [],
-        "Quinta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
         "Sexta": []
     },
     "Emanoel Francisco": {
         "Segunda": [],
         "Terça": [],
-        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
-        "Quinta": [],
-        "Sexta": ["7h30", "8h20", "9h10", "10h50"]
-    },
-    "Erton Wagner": {
-        "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": [],
-        "Quarta": [],
-        "Quinta": [],
-        "Sexta": ["7h30", "8h20", "9h10", "10h50"]
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"]
     },
     "Ewerton Menezes": {
         "Segunda": [],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
-        "Quinta": [],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
-    "Fellipe Anchiêta": {
+    "Felipe Barreto": {
         "Segunda": [],
         "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": ["14h30"],
-        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
-        "Sexta": ["16h30"]
+        "Quarta": ["13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["13h30", "14h30", "15h30", "16h30"],
+        "Sexta": []
     },
     "Helaine Solange": {
-        "Segunda": ["7h30", "8h20", "9h10", "10h50"],
-        "Terça": ["8h20"],
-        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
-        "Quinta": ["10h00"],
-        "Sexta": []
-    },
-    "Higor Ricardo": {
-        "Segunda": ["15h30"],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": ["7h30"],
-        "Quinta": ["7h30", "8h20", "9h10", "10h50"],
-        "Sexta": []
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     },
     "Ivaldir Honório": {
-        "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": [],
-        "Quinta": ["8h20"],
-        "Sexta": ["9h10"]
-    },
-    "Victor Afonso": {
-        "Segunda": ["7h30", "8h20", "9h10", "10h50"],
+        "Segunda": [],
         "Terça": [],
-        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
-        "Quinta": ["7h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
-    "Maurício Costa": {
-        "Segunda": ["13h30"],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": ["7h30", "8h20", "9h10", "10h50"],
+    "Victor Afonso": {
+        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quinta": [],
-        "Sexta": ["10h50"]
+        "Sexta": []
     },
     "Milton Perceus": {
         "Segunda": [],
-        "Terça": ["16h30"],
+        "Terça": ["9h10", "10h00", "10h50", "11h40"],
         "Quarta": [],
         "Quinta": [],
         "Sexta": []
     },
-    "Paulo Cavalcante": {
-        "Segunda": ["7h30", "8h20", "9h10"],
-        "Terça": [],
-        "Quarta": ["10h00"],
+    "Geovany Fernandes": {
+        "Segunda": [],
+        "Terça": ["7h30", "8h20", "9h10", "10h00"],
+        "Quarta": [],
         "Quinta": [],
-        "Sexta": ["15h30"]
+        "Sexta": []
     },
-    "Dâmocles Aurélio": {
-        "Segunda": ["9h10"],
+    "Renato Silvestre": {
+        "Segunda": [],
         "Terça": [],
-        "Quarta": ["8h20"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00"],
+        "Sexta": []
+    },
+    "Elvis Melo": {
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
+    },
+    "Elisson Rocha": {
+        "Segunda": [],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Sexta": []
+    },
+    "Marcello Mendonça": {
+        "Segunda": [],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quinta": [],
-        "Sexta": ["7h30"]
+        "Sexta": []
+    },
+    "Eraylson Galdino": {
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
+    },
+    "Janaína Barros": {
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": [],
+        "Quinta": [],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", ]
+    },
+    "Mariana Maia": {
+        "Segunda": [],
+        "Terça": [],
+        "Quarta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     }
 }
 
@@ -238,6 +268,7 @@ carga_horaria_por_periodo = {
     8: [60, 30, 60, 60, 60, 30],
 }
 
+
 disciplinas_eletivas = [ "Libras", "Educação das Relações Étnico-Raciais", "Educação Ambiental", "Aprendizagem de Máquina e Reconhecimento de Padrões", "Tópicos Avançados em Computação Inteligente",
                          "Tópicos Avançados em Computação Teórica", "Tópicos Avançados em Engenharia de Software e Sistemas I", "Tópicos Avançados em Engenharia de Software e Sistemas II",
                          "Tópicos Avançados em Engenharia de Software e Sistemas III", "Tópicos Avançados em Engenharia de Software e Sistemas IV", "Tópicos Avançados em Gerenciamento de Dados e Informação",
@@ -246,58 +277,57 @@ disciplinas_eletivas = [ "Libras", "Educação das Relações Étnico-Raciais", 
 
 cursos = ["Engenharia de software", "Licenciatura de Computação", "Matemática"]
 
-
 responsabilidade_professores = {
-    "Geometria Analítica": ["Adauto Trigueiro", "Emanoel Francisco"],
-    "Programação I": ["Adauto Trigueiro", "Emanoel Francisco"],
-    "Computação Ética e Sociedade": ["Paulo Cavalcante", "Ariane Nunes"],
-    "Empreendedorismo e Inovação": ["Emanoel Francisco", "Cleiton Soares"],
-    "Cálculo I": ["Adauto Trigueiro", "Paulo Cavalcante"],
-    "Introdução à Computação": ["Ariane Nunes", "Cleiton Soares"],
-    "Disciplina Curricular de Extensão 1": ["Ariane Nunes", "Dâmocles Aurélio"],
-    "Processos de Software": ["Dâmocles Aurélio", "Cleyton Mário"],
-    "Álgebra Linear": ["Ariane Nunes", "Cleiton Soares"],
-    "Programação II": ["Adauto Trigueiro", "Paulo Cavalcante", "Emanoel Francisco", "Cleiton Soares"],
-    "Matemática Discreta": ["Dâmocles Aurélio", "Cleiton Soares"],
-    "Metodologia Científica": ["Emanoel Francisco", "Ariane Nunes"],
-    "Cálculo II": ["Dâmocles Aurélio", "Cleyton Mário"],
-    "Disciplina Curricular de Extensão 2": ["Cleyton Mário", "Ariane Nunes"],
-    "Programação III": ["Adauto Trigueiro", "Paulo Cavalcante"],
-    "Engenharia de Requisitos": ["Cleiton Soares", "Emanoel Francisco"],
-    "Projeto de Software": ["Paulo Cavalcante", "Dâmocles Aurélio"],
-    "Estatística I": ["Dâmocles Aurélio", "Cleiton Soares"],
-    "Banco de Dados": ["Cleyton Mário", "Emanoel Francisco"],
-    "Algoritmos e Estruturas de Dados": ["Adauto Trigueiro", "Ariane Nunes"],
-    "Disciplina Curricular de Extensão 3": ["Cleiton Soares", "Paulo Cavalcante"],
-    "Gerência de Configuração": ["Ariane Nunes", "Cleyton Mário"],
-    "Programação para Web": ["Cleiton Soares", "Dâmocles Aurélio"],
-    "Padrões de Projeto": ["Dâmocles Aurélio", "Ariane Nunes"],
-    "Estatística II": ["Cleyton Mário", "Paulo Cavalcante"],
-    "Organização e Arquitetura de Computadores": ["Ariane Nunes", "Cleiton Soares"],
-    "Teoria da Computação": ["Adauto Trigueiro", "Dâmocles Aurélio"],
-    "Disciplina Curricular de Extensão 4": ["Emanoel Francisco", "Cleiton Soares"],
-    "Gerência de Projetos": ["Paulo Cavalcante", "Ariane Nunes"],
-    "Programação para Dispositivos Móveis": ["Dâmocles Aurélio", "Cleiton Soares"],
-    "Verificação e Validação de Sistemas": ["Cleiton Soares", "Dâmocles Aurélio"],
-    "Projeto I": ["Adauto Trigueiro", "Emanoel Francisco"],
-    "Paradigmas de Linguagens de Programação": ["Emanoel Francisco", "Paulo Cavalcante"],
-    "Redes de Computadores": ["Paulo Cavalcante", "Adauto Trigueiro"],
-    "Disciplina Curricular de Extensão 5": ["Cleiton Soares", "Dâmocles Aurélio"],
-    "Arquitetura de Software": ["Dâmocles Aurélio", "Ariane Nunes"],
-    "Engenharia de Software Experimental": ["Emanoel Francisco", "Cleiton Soares"],
-    "Integração de Sistemas": ["Cleyton Mário", "Adauto Trigueiro"],
-    "Inteligência Artificial": ["Paulo Cavalcante", "Emanoel Francisco"],
-    "Interação Humano-Computador": ["Ariane Nunes", "Cleiton Soares"],
-    "Sistemas Operacionais": ["Adauto Trigueiro", "Cleyton Mário"],
-    "Disciplina Curricular de Extensão 6": ["Cleiton Soares", "Dâmocles Aurélio"],
-    "Qualidade de Software": ["Dâmocles Aurélio", "Paulo Cavalcante"],
-    "Segurança de Sistemas": ["Paulo Cavalcante", "Ariane Nunes"],
-    "Projeto II": ["Ariane Nunes", "Cleyton Mário"],
-    "Seminário em Engenharia de Software I": ["Cleyton Mário", "Dâmocles Aurélio"],
-    "Disciplina Curricular de Extensão 7": ["Dâmocles Aurélio", "Cleiton Soares"],
-    "Cadeira Eletiva": ["Paulo Cavalcante", "Emanoel Francisco"],
-    "Manutenção e Evolução de Software": ["Adauto Trigueiro", "Emanoel Francisco"],
-    "Seminário em Engenharia de Software II": ["Emanoel Francisco", "Cleyton Mário"],
-    "Computação Gráfica e Sistemas Multimídia": ["Cleiton Soares", "Dâmocles Aurélio"],
-    "Disciplina Curricular de Extensão 8": ["Paulo Cavalcante", "Ariane Nunes"]
+    "Geometria Analítica": ["Renato Silvestre"],
+    "Programação I": ["Adauto Trigueiro", "Elisson Rocha"],
+    "Computação Ética e Sociedade": ["Ariane Nunes", "Cleverton Silva"],
+    "Empreendedorismo e Inovação": ["Marcello Mendonça", "Ivaldir Honório"],
+    "Cálculo I": ["Janaína Barros"],
+    "Introdução à Computação": ["Cleverton Silva", "Elvis Melo"],
+    "Disciplina Curricular de Extensão 1": ["Cleverton Silva", "Elvis Melo", "Ariane Nunes"],
+    "Processos de Software": ["Brunno Wagner", "Ewerton Mendonça"],
+    "Álgebra Linear": ["Renato Silvestre"],
+    "Programação II": ["Emanoel Francisco", "Aêda Monalliza", "Elisson Rocha"],
+    "Matemática Discreta": ["Geovany Fernandes"],
+    "Metodologia Científica": ["Ivaldir Honório", "Elvis Melo", "Marcello Mendonça"],
+    "Cálculo II": ["Felipe Barreto"],
+    "Disciplina Curricular de Extensão 2": ["Cleverton Silva", "Adauto Trigueiro", "Elisson Rocha", "Ivaldir Honório"],
+    "Programação III": ["Emanoel Francisco"],
+    "Engenharia de Requisitos": ["Mariana Maia"],
+    "Projeto de Software": ["Ewerton Mendonça"],
+    "Estatística I": ["Milton Perceus"],
+    "Banco de Dados": ["Victor Santos", "Elisson Rocha"],
+    "Algoritmos e Estruturas de Dados": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
+    "Disciplina Curricular de Extensão 3": ["Cleverton Silva", "Adauto Trigueiro", "Elisson Rocha", "Ivaldir Honório"],
+    "Gerência de Configuração": ["Ewerton Mendonça"],
+    "Programação para Web": ["Helaine Barreiros", "Elisson Rocha", "Ewerton Mendonça"],
+    "Padrões de Projeto": ["Ewerton Mendonça", "Brunno Wagner"],
+    "Estatística II": ["Milton Perceus"],
+    "Organização e Arquitetura de Computadores": ["Cleiton Martins"],
+    "Teoria da Computação": ["Brunno Wagner"],
+    "Disciplina Curricular de Extensão 4": ["Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+    "Gerência de Projetos": ["Aêda Monalliza", "Helaine Barreiros"],
+    "Programação para Dispositivos Móveis": ["Elisson Rocha", "Ewerton Mendonça"],
+    "Verificação e Validação de Sistemas": ["Brunno Wagner"],
+    "Projeto I": ["Marcello Mendonça", "Helaine Barreiros"],
+    "Paradigmas de Linguagens de Programação": ["Emanoel Francisco", "Eraylson Galdino"],
+    "Redes de Computadores": ["Cleiton Martins"],
+    "Disciplina Curricular de Extensão 5": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+    "Arquitetura de Software": ["Brunno Wagner"],
+    "Engenharia de Software Experimental": ["Adauto Trigueiro"],
+    "Integração de Sistemas": ["Elisson Rocha"],
+    "Inteligência Artificial": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
+    "Interação Humano-Computador": ["Ariane Nunes"],
+    "Sistemas Operacionais": ["Cleiton Martins"],
+    "Disciplina Curricular de Extensão 6": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+    "Qualidade de Software": ["Brunno Wagner"],
+    "Segurança de Sistemas": ["Cleiton Martins"],
+    "Projeto II": ["Mariana Maia", "Marcello Mendonça"],
+    "Seminário em Engenharia de Software I": ["Marcelo Mendonça", "Elvis Melo", "Victor Ferreira"],
+    "Disciplina Curricular de Extensão 7": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+    "Cadeira Eletiva": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
+    "Manutenção e Evolução de Software": ["Victor Santos"],
+    "Seminário em Engenharia de Software II": ["Marcelo Mendonça", "Elvis Melo", "Victor Ferreira"],
+    "Computação Gráfica e Sistemas Multimídia": ["Ewerton Mendonça"],
+    "Disciplina Curricular de Extensão 8": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
 }

@@ -1,7 +1,7 @@
 import random
 from resources import responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 
-PENALIDADE_HARD = 100
+PENALIDADE_HARD = 500
 PENALIDADE_SOFT = 10
 
 # Função para escolher o tipo de laboratório aleatoriamente
@@ -72,6 +72,8 @@ def criar_cromossomo(caso):
                             alocado_dia2 = True
 
                     if not (alocado_dia1 and alocado_dia2):
+                        print(f"Erro ao alocar 90 horas da disciplina {disciplina} para o professor {professor_escolhido}. Tentativas: {tentativas}")
+                        print(f"Estado atual das aulas distribuídas: {aulas_distribuidas}")
                         raise ValueError(f"Não foi possível alocar a carga horária de 90 horas da disciplina {disciplina}")
 
                 else:
@@ -110,11 +112,14 @@ def criar_cromossomo(caso):
                             alocado = True
 
                     if not alocado:
+                        print(f"Erro ao alocar {aulas_semanais} aulas de {disciplina} para o professor {professor_escolhido}. Tentativas: {tentativas}")
+                        print(f"Estado atual das aulas distribuídas: {aulas_distribuidas}")
                         raise ValueError(f"Não foi possível alocar {aulas_semanais} aulas de {disciplina} para o professor {professor_escolhido}")
 
         aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
 
     return aulas_distribuidas_por_periodo
+
 def calcular_penalidades(cromossomo):
     penalidades = 0
 
