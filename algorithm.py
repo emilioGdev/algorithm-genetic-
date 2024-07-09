@@ -16,110 +16,112 @@ def criar_cromossomo(caso):
     else:
         raise ValueError("Caso deve ser 1 ou 2")
 
-    aulas_distribuidas_por_periodo = {}
-    labs_ocupados = {dia: {slot: {'windows': False, 'linux': False} for slot in range(len(horarios_manha + horarios_tarde))} for dia in dias_da_semana}
+    while True:
+        try:
+            aulas_distribuidas_por_periodo = {}
+            labs_ocupados = {dia: {slot: {'windows': False, 'linux': False} for slot in range(len(horarios_manha + horarios_tarde))} for dia in dias_da_semana}
 
-    for periodo in periodos:
-        disciplinas_periodo = disciplina_por_periodo[periodo]
-        carga_horaria_periodo = carga_horaria_por_periodo[periodo]
+            for periodo in periodos:
+                disciplinas_periodo = disciplina_por_periodo[periodo]
+                carga_horaria_periodo = carga_horaria_por_periodo[periodo]
 
-        aulas_distribuidas = {dia: [[] for _ in range(len(horarios_manha + horarios_tarde))] for dia in dias_da_semana}
+                aulas_distribuidas = {dia: [[] for _ in range(len(horarios_manha + horarios_tarde))] for dia in dias_da_semana}
 
-        for disciplina_info, carga_horaria in zip(disciplinas_periodo, carga_horaria_periodo):
-            disciplina = disciplina_info['nome']
-            lab = disciplina_info['lab']
-            lab_tipo = escolher_lab_tipo() if lab else None
+                for disciplina_info, carga_horaria in zip(disciplinas_periodo, carga_horaria_periodo):
+                    disciplina = disciplina_info['nome']
+                    lab = disciplina_info['lab']
+                    lab_tipo = escolher_lab_tipo() if lab else None
 
-            if disciplina in responsabilidade_professores:
-                professores_disponiveis = responsabilidade_professores[disciplina]
-                professor_escolhido = random.choice(professores_disponiveis)
+                    if disciplina in responsabilidade_professores:
+                        professores_disponiveis = responsabilidade_professores[disciplina]
+                        professor_escolhido = random.choice(professores_disponiveis)
 
-                if carga_horaria == 90:
-                    aulas_semanais_dia1 = 4
-                    aulas_semanais_dia2 = 2
+                        if carga_horaria == 90:
+                            aulas_semanais_dia1 = 4
+                            aulas_semanais_dia2 = 2
 
-                    alocado_dia1 = False
-                    alocado_dia2 = False
-                    tentativas = 0
+                            alocado_dia1 = False
+                            alocado_dia2 = False
+                            tentativas = 0
 
-                    while not (alocado_dia1 and alocado_dia2) and tentativas < 20:
-                        tentativas += 1
-                        dia = random.choice(dias_da_semana)
+                            while not (alocado_dia1 and alocado_dia2) and tentativas < 20:
+                                tentativas += 1
+                                dia = random.choice(dias_da_semana)
 
-                        slots_disponiveis_manha = []
-                        slots_disponiveis_tarde = []
+                                slots_disponiveis_manha = []
+                                slots_disponiveis_tarde = []
 
-                        for slot_inicio in range(len(horarios_manha) - aulas_semanais_dia1 + 1):
-                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais_dia1)):
-                                slots_disponiveis_manha.append(slot_inicio)
-                        for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais_dia2 + 1):
-                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais_dia2)):
-                                slots_disponiveis_tarde.append(slot_inicio)
+                                for slot_inicio in range(len(horarios_manha) - aulas_semanais_dia1 + 1):
+                                    if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais_dia1)):
+                                        slots_disponiveis_manha.append(slot_inicio)
+                                for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais_dia2 + 1):
+                                    if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais_dia2)):
+                                        slots_disponiveis_tarde.append(slot_inicio)
 
-                        if not alocado_dia1 and slots_disponiveis_manha:
-                            slot_escolhido = random.choice(slots_disponiveis_manha)
-                            for i in range(aulas_semanais_dia1):
-                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
-                                if lab:
-                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
-                            alocado_dia1 = True
-                        elif not alocado_dia2 and slots_disponiveis_tarde:
-                            slot_escolhido = random.choice(slots_disponiveis_tarde)
-                            for i in range(aulas_semanais_dia2):
-                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
-                                if lab:
-                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
-                            alocado_dia2 = True
+                                if not alocado_dia1 and slots_disponiveis_manha:
+                                    slot_escolhido = random.choice(slots_disponiveis_manha)
+                                    for i in range(aulas_semanais_dia1):
+                                        aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                        if lab:
+                                            labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
+                                    alocado_dia1 = True
+                                elif not alocado_dia2 and slots_disponiveis_tarde:
+                                    slot_escolhido = random.choice(slots_disponiveis_tarde)
+                                    for i in range(aulas_semanais_dia2):
+                                        aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                        if lab:
+                                            labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
+                                    alocado_dia2 = True
 
-                    if not (alocado_dia1 and alocado_dia2):
-                        print(f"Erro ao alocar 90 horas da disciplina {disciplina} para o professor {professor_escolhido}. Tentativas: {tentativas}")
-                        print(f"Estado atual das aulas distribuídas: {aulas_distribuidas}")
-                        raise ValueError(f"Não foi possível alocar a carga horária de 90 horas da disciplina {disciplina}")
+                            if not (alocado_dia1 and alocado_dia2):
+                                raise ValueError(f"Não foi possível alocar a carga horária de 90 horas da disciplina {disciplina}")
 
-                else:
-                    aulas_semanais = carga_horaria // 15  # 60 horas -> 4 aulas, 45 horas -> 3 aulas, 30 horas -> 2 aulas
+                        else:
+                            aulas_semanais = carga_horaria // 15
 
-                    alocado = False
-                    tentativas = 0
+                            alocado = False
+                            tentativas = 0
 
-                    while not alocado and tentativas < 20:
-                        tentativas += 1
-                        dia = random.choice(dias_da_semana)
+                            while not alocado and tentativas < 20:
+                                tentativas += 1
+                                dia = random.choice(dias_da_semana)
 
-                        slots_disponiveis_manha = []
-                        slots_disponiveis_tarde = []
+                                slots_disponiveis_manha = []
+                                slots_disponiveis_tarde = []
 
-                        for slot_inicio in range(len(horarios_manha) - aulas_semanais + 1):
-                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
-                                slots_disponiveis_manha.append(slot_inicio)
-                        for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais + 1):
-                            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
-                                slots_disponiveis_tarde.append(slot_inicio)
+                                for slot_inicio in range(len(horarios_manha) - aulas_semanais + 1):
+                                    if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
+                                        slots_disponiveis_manha.append(slot_inicio)
+                                for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais + 1):
+                                    if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
+                                        slots_disponiveis_tarde.append(slot_inicio)
 
-                        if slots_disponiveis_manha:
-                            slot_escolhido = random.choice(slots_disponiveis_manha)
-                            for i in range(aulas_semanais):
-                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
-                                if lab:
-                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
-                            alocado = True
-                        elif slots_disponiveis_tarde:
-                            slot_escolhido = random.choice(slots_disponiveis_tarde)
-                            for i in range(aulas_semanais):
-                                aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
-                                if lab:
-                                    labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
-                            alocado = True
+                                if slots_disponiveis_manha:
+                                    slot_escolhido = random.choice(slots_disponiveis_manha)
+                                    for i in range(aulas_semanais):
+                                        aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                        if lab:
+                                            labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
+                                    alocado = True
+                                elif slots_disponiveis_tarde:
+                                    slot_escolhido = random.choice(slots_disponiveis_tarde)
+                                    for i in range(aulas_semanais):
+                                        aulas_distribuidas[dia][slot_escolhido + i].append((disciplina, professor_escolhido, lab_tipo))
+                                        if lab:
+                                            labs_ocupados[dia][slot_escolhido + i][lab_tipo] = True
+                                    alocado = True
 
-                    if not alocado:
-                        print(f"Erro ao alocar {aulas_semanais} aulas de {disciplina} para o professor {professor_escolhido}. Tentativas: {tentativas}")
-                        print(f"Estado atual das aulas distribuídas: {aulas_distribuidas}")
-                        raise ValueError(f"Não foi possível alocar {aulas_semanais} aulas de {disciplina} para o professor {professor_escolhido}")
+                            if not alocado:
+                                raise ValueError(f"Não foi possível alocar {aulas_semanais} aulas de {disciplina} para o professor {professor_escolhido}")
 
-        aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
+                    aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
 
-    return aulas_distribuidas_por_periodo
+            return aulas_distribuidas_por_periodo
 
+        except ValueError as e:
+            print(f"Erro durante a geração do cromossomo: {e}")
+            print("Gerando um novo cromossomo...")
+            continue
 def calcular_penalidades(cromossomo):
     penalidades = 0
 
