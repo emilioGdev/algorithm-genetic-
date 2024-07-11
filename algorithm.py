@@ -1,8 +1,8 @@
 import random
 from resources import professores_horario, responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 
-PENALIDADE_HARD = 500
-PENALIDADE_SOFT = 10
+PENALIDADE_HARD = 100
+PENALIDADE_SOFT = 1
 
 def escolher_lab_tipo():
     return 'windows' if random.choice([True, False]) else 'linux'
