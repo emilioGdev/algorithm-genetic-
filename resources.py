@@ -63,14 +63,14 @@ professores_horario = {
         "Quinta": [],
         "Sexta": [],
     },
-    "Cleiton Soares": {
+    "Cleiton Martins": {
         "Segunda": [],
         "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quinta": [],
         "Sexta": [],
     },
-    "Cleverton Anderson": {
+    "Cleverton Silva": {
         "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
         "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
         "Quarta": [],
@@ -84,7 +84,7 @@ professores_horario = {
         "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
         "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"]
     },
-    "Ewerton Menezes": {
+    "Ewerton Mendonça": {
         "Segunda": [],
         "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
@@ -112,7 +112,7 @@ professores_horario = {
         "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
-    "Victor Afonso": {
+    "Victor Santos": {
         "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
@@ -323,11 +323,11 @@ responsabilidade_professores = {
     "Qualidade de Software": ["Brunno Wagner"],
     "Segurança de Sistemas": ["Cleiton Martins"],
     "Projeto II": ["Mariana Maia", "Marcello Mendonça"],
-    "Seminário em Engenharia de Software I": ["Marcelo Mendonça", "Elvis Melo", "Victor Ferreira"],
+    "Seminário em Engenharia de Software I": ["Marcello Mendonça", "Elvis Melo", "Victor Ferreira"],
     "Disciplina Curricular de Extensão 7": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
     "Cadeira Eletiva": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
     "Manutenção e Evolução de Software": ["Victor Santos"],
-    "Seminário em Engenharia de Software II": ["Marcelo Mendonça", "Elvis Melo", "Victor Ferreira"],
+    "Seminário em Engenharia de Software II": ["Marcello Mendonça", "Elvis Melo", "Victor Ferreira"],
     "Computação Gráfica e Sistemas Multimídia": ["Ewerton Mendonça"],
     "Disciplina Curricular de Extensão 8": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
 }

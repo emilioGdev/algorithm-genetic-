@@ -1,12 +1,11 @@
 import random
-from resources import responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
+from resources import professores_horario, responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 
 PENALIDADE_HARD = 500
 PENALIDADE_SOFT = 10
 
 def escolher_lab_tipo():
     return 'windows' if random.choice([True, False]) else 'linux'
-
 def alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor, lab, lab_tipo, aulas_semanais, periodo, carga_horaria):
     alocado = False
     tentativas = 0
@@ -19,10 +18,23 @@ def alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor, lab, 
         slots_disponiveis_tarde = []
 
         for slot_inicio in range(len(horarios_manha) - aulas_semanais + 1):
-            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
+            if all(
+                len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and 
+                (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) and
+                (horarios_manha[slot_inicio + i] in professores_horario[professor][dia]) and
+                (not any(professor in aula for aula in aulas_distribuidas[dia][slot_inicio + i]))
+                for i in range(aulas_semanais)
+            ):
                 slots_disponiveis_manha.append(slot_inicio)
+
         for slot_inicio in range(len(horarios_manha), len(horarios_manha) + len(horarios_tarde) - aulas_semanais + 1):
-            if all(len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) for i in range(aulas_semanais)):
+            if all(
+                len(aulas_distribuidas[dia][slot_inicio + i]) == 0 and 
+                (not lab or not labs_ocupados[dia][slot_inicio + i][lab_tipo]) and
+                (horarios_tarde[slot_inicio - len(horarios_manha) + i] in professores_horario[professor][dia]) and
+                (not any(professor in aula for aula in aulas_distribuidas[dia][slot_inicio + i]))
+                for i in range(aulas_semanais)
+            ):
                 slots_disponiveis_tarde.append(slot_inicio)
 
         if slots_disponiveis_manha:
@@ -43,8 +55,8 @@ def alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor, lab, 
     if not alocado:
         raise ValueError(f"Não foi possível alocar {aulas_semanais} aulas de {disciplina} para o professor {professor}")
 
-def distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_periodo, labs_ocupados):
-    aulas_distribuidas = {dia: [[] for _ in range(len(horarios_manha + horarios_tarde))] for dia in dias_da_semana}
+def distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_periodo, labs_ocupados, aulas_distribuidas_por_periodo):
+    aulas_distribuidas = aulas_distribuidas_por_periodo.get(periodo, {dia: [[] for _ in range(len(horarios_manha + horarios_tarde))] for dia in dias_da_semana})
 
     for disciplina_info, carga_horaria in zip(disciplinas_periodo, carga_horaria_periodo):
         disciplina = disciplina_info['nome']
@@ -53,7 +65,19 @@ def distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_per
 
         if disciplina in responsabilidade_professores:
             professores_disponiveis = responsabilidade_professores[disciplina]
-            professor_escolhido = random.choice(professores_disponiveis)
+            professor_escolhido = None
+
+            for professor in professores_disponiveis:
+                # Verifica se o professor tem slots suficientes disponíveis
+                slots_disponiveis = 0
+                for dia in dias_da_semana:
+                    slots_disponiveis += len(professores_horario[professor][dia])
+                if slots_disponiveis >= carga_horaria // 15:
+                    professor_escolhido = professor
+                    break
+
+            if not professor_escolhido:
+                raise ValueError(f"Não há professor disponível com slots suficientes para a disciplina {disciplina}")
 
             if carga_horaria == 90:
                 aulas_semanais_dia1 = 4
@@ -85,7 +109,7 @@ def criar_cromossomo(caso):
                 carga_horaria_periodo = carga_horaria_por_periodo[periodo]
 
                 # Chama a função para distribuir aulas para o período atual
-                aulas_distribuidas = distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_periodo, labs_ocupados)
+                aulas_distribuidas = distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_periodo, labs_ocupados, aulas_distribuidas_por_periodo)
                 aulas_distribuidas_por_periodo[periodo] = aulas_distribuidas
 
             return aulas_distribuidas_por_periodo
@@ -94,8 +118,6 @@ def criar_cromossomo(caso):
             print(f"Erro durante a geração do cromossomo: {e}")
             print("Gerando um novo cromossomo...")
             continue
-
-
 def calcular_penalidades(cromossomo):
     penalidades = 0
 
@@ -170,7 +192,10 @@ def gerar_tabela_html_do_cromossomo(cromossomo, caso):
 
             for dia in dias_da_semana:
                 aulas = cromossomo[periodo][dia][slot]
-                aula_str = "<br>".join(f"{disciplina}<br>{professor}<br>{lab_tipo}" for disciplina, professor, lab_tipo in aulas)
+                aula_str = "<br>".join(
+                    f"{disciplina}<br>{professor}" + (f"<br><b>Lab: {lab_tipo}</b>" if lab_tipo else "")
+                    for disciplina, professor, lab_tipo in aulas
+                )
                 html += f"<td>{aula_str}</td>"
 
             html += "</tr>\n"
