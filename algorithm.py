@@ -1,5 +1,5 @@
 import random
-from resources import professores_horario, responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
+from resources import professores_horario, professores_info, responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 
 PENALIDADE_HARD = 100
 PENALIDADE_SOFT = 1
@@ -55,8 +55,10 @@ def alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor, lab, 
     if not alocado:
         raise ValueError(f"Não foi possível alocar {aulas_semanais} aulas de {disciplina} para o professor {professor}")
 
+# Função para distribuir aulas por período
 def distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_periodo, labs_ocupados, aulas_distribuidas_por_periodo):
     aulas_distribuidas = aulas_distribuidas_por_periodo.get(periodo, {dia: [[] for _ in range(len(horarios_manha + horarios_tarde))] for dia in dias_da_semana})
+    horas_professor = {prof: 0 for prof in professores_info.keys()}
 
     for disciplina_info, carga_horaria in zip(disciplinas_periodo, carga_horaria_periodo):
         disciplina = disciplina_info['nome']
@@ -68,11 +70,11 @@ def distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_per
             professor_escolhido = None
 
             for professor in professores_disponiveis:
-                # Verifica se o professor tem slots suficientes disponíveis
+                # Verifica se o professor tem slots suficientes disponíveis e não excede as horas máximas permitidas
                 slots_disponiveis = 0
                 for dia in dias_da_semana:
                     slots_disponiveis += len(professores_horario[professor][dia])
-                if slots_disponiveis >= carga_horaria // 15:
+                if slots_disponiveis >= carga_horaria // 15 and horas_professor[professor] + carga_horaria // 15 <= professores_info[professor]["max_horas"]:
                     professor_escolhido = professor
                     break
 
@@ -84,13 +86,18 @@ def distribuir_aulas_por_periodo(periodo, disciplinas_periodo, carga_horaria_per
                 aulas_semanais_dia2 = 2
 
                 alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor_escolhido, lab, lab_tipo, aulas_semanais_dia1, periodo, carga_horaria)
+                horas_professor[professor_escolhido] += aulas_semanais_dia1
+
                 alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor_escolhido, lab, lab_tipo, aulas_semanais_dia2, periodo, carga_horaria)
+                horas_professor[professor_escolhido] += aulas_semanais_dia2
             else:
                 aulas_semanais = carga_horaria // 15
                 alocar_aulas(aulas_distribuidas, labs_ocupados, disciplina, professor_escolhido, lab, lab_tipo, aulas_semanais, periodo, carga_horaria)
+                horas_professor[professor_escolhido] += aulas_semanais
 
     return aulas_distribuidas
 
+# Função para criar cromossomo
 def criar_cromossomo(caso):
     if caso == 1:
         periodos = [1, 3, 5, 7]
@@ -120,6 +127,7 @@ def criar_cromossomo(caso):
             continue
 def calcular_penalidades(cromossomo):
     penalidades = 0
+    professores_alocados = set()
 
     for periodo in cromossomo:
         disciplinas_periodo = set(disciplina_info['nome'] for disciplina_info in disciplina_por_periodo[periodo])
@@ -138,6 +146,7 @@ def calcular_penalidades(cromossomo):
                     professor = aula[1]
                     lab_tipo = aula[2]
                     disciplinas_alocadas.add(disciplina)
+                    professores_alocados.add(professor)
 
                     # Verificar conflito de laboratório
                     if lab_tipo and labs_utilizados[dia][slot][lab_tipo]:
@@ -161,7 +170,6 @@ def calcular_penalidades(cromossomo):
             print(f"Adicionada PENALIDADE_HARD por disciplinas não ofertadas no período {periodo}: {disciplinas_nao_ofertadas}")
 
     return penalidades
-
 
 def calcular_fitness(cromossomo):
     penalidades = calcular_penalidades(cromossomo)

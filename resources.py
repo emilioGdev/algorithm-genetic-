@@ -331,3 +331,27 @@ responsabilidade_professores = {
     "Computação Gráfica e Sistemas Multimídia": ["Ewerton Mendonça"],
     "Disciplina Curricular de Extensão 8": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
 }
+
+professores_info = {
+    "Brunno Wagner": {"tipo": "normal", "max_horas": 16},
+    "Cleverton Silva": {"tipo": "temporario", "max_horas": 12},
+    "Victor Santos": {"tipo": "normal", "max_horas": 16},
+    "Elisson Rocha": {"tipo": "normal", "max_horas": 16},
+    "Ewerton Mendonça": {"tipo": "normal", "max_horas": 16},
+    "Ariane Nunes": {"tipo": "gestao", "max_horas": 16},
+    "Aêda Monalliza": {"tipo": "gestao", "max_horas": 16},
+    "Adauto Trigueiro": {"tipo": "gestao", "max_horas": 16},
+    "Emanoel Francisco": {"tipo": "gestao", "max_horas": 16},
+    "Cleiton Martins": {"tipo": "normal", "max_horas": 16},
+    "Eraylson Galdino": {"tipo": "gestao", "max_horas": 16},
+    "Helaine Barreiros": {"tipo": "afastamento", "max_horas": 0},
+    "Ivaldir Honório": {"tipo": "gestao", "max_horas": 16},
+    "Mariana Maia": {"tipo": "normal", "max_horas": 16},
+    "Elvis Melo": {"tipo": "normal", "max_horas": 16},
+    "Felipe Anchieta": {"tipo": "temporario", "max_horas": 12},
+    "Renato Silvestre": {"tipo": "normal", "max_horas": 16},
+    "Marcello Mendonça": {"tipo": "normal", "max_horas": 16},
+    "Janaína Barros": {"tipo": "normal", "max_horas": 16},
+    "Milton Perceus": {"tipo": "normal", "max_horas": 16},
+}
+
