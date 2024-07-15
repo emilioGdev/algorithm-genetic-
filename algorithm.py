@@ -1,8 +1,8 @@
 import random
 from resources import professores_horario, responsabilidade_professores, dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 
-PENALIDADE_HARD = 500
-PENALIDADE_SOFT = 10
+PENALIDADE_HARD = 100
+PENALIDADE_SOFT = 1
 
 def escolher_lab_tipo():
     return 'windows' if random.choice([True, False]) else 'linux'
@@ -208,13 +208,84 @@ def salvar_html(html, nome_arquivo):
         file.write(html)
     print(f"Arquivo '{nome_arquivo}' salvo com sucesso.")
 
+def melhores_pais(populacao):
+    lista_fitness = []
+    
+    for i, individuo in enumerate(populacao):
+        fitness = calcular_fitness(individuo)
+        lista_fitness.append((i, fitness))
+    lista_fitness.sort(key=lambda x: x[1], reverse=True)
+    
+    return lista_fitness[0][0], lista_fitness[1][0]
+
+def cruzamento(individuo_a, individuo_b, porcentagem=0.25):
+    corte = int(len(individuo_a) * porcentagem)
+
+    novo_individuo_a = individuo_a[:corte] + individuo_b[corte:]
+    novo_individuo_b = individuo_b[:corte] + individuo_a[corte:]
+    
+    return novo_individuo_a, novo_individuo_b
+
+
+def cromossomo_dict_to_list(cromossomo):
+    # Mapeia dias da semana para seus índices
+    dias_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+    lista = []
+
+    # Percorre as turmas e ordena por dias e horários
+    for turma in sorted(cromossomo.keys()):
+        for dia in dias_semana:
+            lista.extend(cromossomo[turma][dia])
+    
+    return lista
+
+def cromossomo_list_to_dict(lista, caso):
+    # Mapeia índices para dias da semana
+    dias_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+    cromossomo = {}
+    horarios_por_dia = 10
+
+    # Número de turmas (deduzido do comprimento da lista)
+    num_turmas = len(lista) // (len(dias_semana) * horarios_por_dia)
+
+    # Reconstrói o dicionário do cromossomo
+    for i, turma in enumerate(range(caso, num_turmas*2 + 1, 2)):
+        cromossomo[turma] = {}
+        for dia_idx, dia in enumerate(dias_semana):
+            inicio = ((i+1) - 1) * (len(dias_semana) * horarios_por_dia) + dia_idx * horarios_por_dia
+            fim = inicio + horarios_por_dia
+            cromossomo[turma][dia] = lista[inicio:fim]
+    
+    return cromossomo
 # Exemplo de uso:
 caso = 1  # Defina o caso que você quer gerar (1 ou 2)
 horarios_por_periodo = criar_cromossomo(caso)
+horarios_por_periodo_2 = criar_cromossomo(caso)
+horarios_por_periodo_3 = criar_cromossomo(caso)
 
 # Calcular fitness do cromossomo gerado
 fitness = calcular_fitness(horarios_por_periodo)
-print(f"Fitness do cromossomo: {fitness}")
+fitness_2 = calcular_fitness(horarios_por_periodo_2)
+fitness_3 = calcular_fitness(horarios_por_periodo_3)
+print(f"Fitness do cromossomo: {fitness}, {fitness_2} e {fitness_3}")
+# print("Primeiro cromossomo:")
+# print(horarios_por_periodo)
+# print("Segundo cromossomo:")
+# print(horarios_por_periodo_2)
+# print("Terceiro cromossomo:")
+# print(horarios_por_periodo_3)
+
+populacao_selecionada = [horarios_por_periodo, horarios_por_periodo_2, horarios_por_periodo_3]
+
+index_a, index_b = melhores_pais(populacao_selecionada)
+
+novo_individuo1, novo_individuo2 = cruzamento(cromossomo_dict_to_list(populacao_selecionada[index_a]), cromossomo_dict_to_list(populacao_selecionada[index_b]), porcentagem=0.5)
+
+novo_individuo1 = cromossomo_list_to_dict(novo_individuo1, caso)
+novo_individuo2 = cromossomo_list_to_dict(novo_individuo2, caso)
+fitness_4 = calcular_fitness(novo_individuo1)
+fitness_5 = calcular_fitness(novo_individuo2)
+print(f"Fitness do cromossomo: {fitness_4} e {fitness_5}")
 
 # Gerar tabela HTML
 html_tabela = gerar_tabela_html_do_cromossomo(horarios_por_periodo, caso)
