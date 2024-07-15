@@ -131,7 +131,7 @@ def calcular_penalidades(cromossomo):
                 # Penalidade soft: Livrar os horários da tarde ao máximo
                 if slot >= len(horarios_manha) and aulas:
                     penalidades += PENALIDADE_SOFT
-                    print(f"Adicionada PENALIDADE_SOFT por ocupação de tarde no período {periodo}, dia {dia}, slot {slot}")
+                    #print(f"Adicionada PENALIDADE_SOFT por ocupação de tarde no período {periodo}, dia {dia}, slot {slot}")
 
                 for aula in aulas:
                     disciplina = aula[0]
@@ -142,7 +142,7 @@ def calcular_penalidades(cromossomo):
                     # Verificar conflito de laboratório
                     if lab_tipo and labs_utilizados[dia][slot][lab_tipo]:
                         penalidades += PENALIDADE_HARD
-                        print(f"Adicionada PENALIDADE_HARD por conflito de laboratório no período {periodo}, dia {dia}, slot {slot}. Laboratório: {lab_tipo}")
+                        #print(f"Adicionada PENALIDADE_HARD por conflito de laboratório no período {periodo}, dia {dia}, slot {slot}. Laboratório: {lab_tipo}")
 
                     # Marcar laboratório como utilizado
                     if lab_tipo:
@@ -152,13 +152,13 @@ def calcular_penalidades(cromossomo):
                 professores_no_slot = [aula[1] for aula in aulas]
                 if len(professores_no_slot) != len(set(professores_no_slot)):
                     penalidades += PENALIDADE_HARD
-                    print(f"Adicionada PENALIDADE_HARD por conflito de professores no período {periodo}, dia {dia}, slot {slot}. Professores: {professores_no_slot}")
+                    #print(f"Adicionada PENALIDADE_HARD por conflito de professores no período {periodo}, dia {dia}, slot {slot}. Professores: {professores_no_slot}")
 
         # Penalidade hard: Verificar se todas as disciplinas do período estão ofertadas
         disciplinas_nao_ofertadas = disciplinas_periodo - disciplinas_alocadas
         if disciplinas_nao_ofertadas:
             penalidades += PENALIDADE_HARD * len(disciplinas_nao_ofertadas)
-            print(f"Adicionada PENALIDADE_HARD por disciplinas não ofertadas no período {periodo}: {disciplinas_nao_ofertadas}")
+            #print(f"Adicionada PENALIDADE_HARD por disciplinas não ofertadas no período {periodo}: {disciplinas_nao_ofertadas}")
 
     return penalidades
 
@@ -257,39 +257,82 @@ def cromossomo_list_to_dict(lista, caso):
             cromossomo[turma][dia] = lista[inicio:fim]
     
     return cromossomo
+
+def ordenar_populacao_por_fitness(populacao):
+    # Ordena a população pela chave fitness, do maior para o menor
+    populacao_ordenada = sorted(populacao, key=calcular_fitness, reverse=True)
+    return populacao_ordenada
+
 # Exemplo de uso:
 caso = 1  # Defina o caso que você quer gerar (1 ou 2)
-horarios_por_periodo = criar_cromossomo(caso)
-horarios_por_periodo_2 = criar_cromossomo(caso)
-horarios_por_periodo_3 = criar_cromossomo(caso)
+tam_populacao = 100
+geracoes = 5
+populacao = []
 
-# Calcular fitness do cromossomo gerado
-fitness = calcular_fitness(horarios_por_periodo)
-fitness_2 = calcular_fitness(horarios_por_periodo_2)
-fitness_3 = calcular_fitness(horarios_por_periodo_3)
-print(f"Fitness do cromossomo: {fitness}, {fitness_2} e {fitness_3}")
-# print("Primeiro cromossomo:")
-# print(horarios_por_periodo)
-# print("Segundo cromossomo:")
-# print(horarios_por_periodo_2)
-# print("Terceiro cromossomo:")
-# print(horarios_por_periodo_3)
+for i in range(tam_populacao):
+    cromossomo = criar_cromossomo(caso)
+    populacao.append(cromossomo)
 
-populacao_selecionada = [horarios_por_periodo, horarios_por_periodo_2, horarios_por_periodo_3]
+for i in range(geracoes):
 
-index_a, index_b = melhores_pais(populacao_selecionada)
+    populacao = ordenar_populacao_por_fitness(populacao)
 
-novo_individuo1, novo_individuo2 = cruzamento(cromossomo_dict_to_list(populacao_selecionada[index_a]), cromossomo_dict_to_list(populacao_selecionada[index_b]), porcentagem=0.5)
+    print(f"Populacao Geracao {i+1}")
+    for i in range(5):    
+        print(calcular_fitness(populacao[i]))
 
-novo_individuo1 = cromossomo_list_to_dict(novo_individuo1, caso)
-novo_individuo2 = cromossomo_list_to_dict(novo_individuo2, caso)
-fitness_4 = calcular_fitness(novo_individuo1)
-fitness_5 = calcular_fitness(novo_individuo2)
-print(f"Fitness do cromossomo: {fitness_4} e {fitness_5}")
+    nova_populacao = []
 
-# Gerar tabela HTML
-html_tabela = gerar_tabela_html_do_cromossomo(horarios_por_periodo, caso)
-nome_arquivo = "cronograma.html"
+    tam_populacao_fixa = int(tam_populacao * 0.2)
+    tam_populacao_gerada = tam_populacao - tam_populacao_fixa
 
-# Imprimir ou salvar o HTML gerado
-salvar_html(html_tabela, nome_arquivo)
+    nova_populacao = populacao[:tam_populacao_fixa]
+
+    for i in range(tam_populacao_gerada//2):
+        populacao_selecionada = random.sample(populacao, 3)
+        index_a, index_b = melhores_pais(populacao_selecionada)
+        novo_individuo1, novo_individuo2 = cruzamento(cromossomo_dict_to_list(populacao_selecionada[index_a]), cromossomo_dict_to_list(populacao_selecionada[index_b]), porcentagem=0.5)
+        
+        novo_individuo1 = cromossomo_list_to_dict(novo_individuo1, caso)
+        novo_individuo2 = cromossomo_list_to_dict(novo_individuo2, caso)
+        
+        nova_populacao.append(novo_individuo1)
+        nova_populacao.append(novo_individuo2)
+
+    populacao = ordenar_populacao_por_fitness(nova_populacao)
+
+
+# horarios_por_periodo = criar_cromossomo(caso)
+# horarios_por_periodo_2 = criar_cromossomo(caso)
+# horarios_por_periodo_3 = criar_cromossomo(caso)
+
+# # Calcular fitness do cromossomo gerado
+# fitness = calcular_fitness(horarios_por_periodo)
+# fitness_2 = calcular_fitness(horarios_por_periodo_2)
+# fitness_3 = calcular_fitness(horarios_por_periodo_3)
+# print(f"Fitness do cromossomo: {fitness}, {fitness_2} e {fitness_3}")
+# # print("Primeiro cromossomo:")
+# # print(horarios_por_periodo)
+# # print("Segundo cromossomo:")
+# # print(horarios_por_periodo_2)
+# # print("Terceiro cromossomo:")
+# # print(horarios_por_periodo_3)
+
+# populacao_selecionada = [horarios_por_periodo, horarios_por_periodo_2, horarios_por_periodo_3]
+
+# index_a, index_b = melhores_pais(populacao_selecionada)
+
+# novo_individuo1, novo_individuo2 = cruzamento(cromossomo_dict_to_list(populacao_selecionada[index_a]), cromossomo_dict_to_list(populacao_selecionada[index_b]), porcentagem=0.5)
+
+# novo_individuo1 = cromossomo_list_to_dict(novo_individuo1, caso)
+# novo_individuo2 = cromossomo_list_to_dict(novo_individuo2, caso)
+# fitness_4 = calcular_fitness(novo_individuo1)
+# fitness_5 = calcular_fitness(novo_individuo2)
+# print(f"Fitness do cromossomo: {fitness_4} e {fitness_5}")
+
+# # Gerar tabela HTML
+# html_tabela = gerar_tabela_html_do_cromossomo(horarios_por_periodo, caso)
+# nome_arquivo = "cronograma.html"
+
+# # Imprimir ou salvar o HTML gerado
+# salvar_html(html_tabela, nome_arquivo)
