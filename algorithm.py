@@ -186,11 +186,35 @@ def melhores_pais(populacao):
     
     return lista_fitness[0][0], lista_fitness[1][0]
 
-def cruzamento(individuo_a, individuo_b, porcentagem=0.25):
-    corte = int(len(individuo_a) * porcentagem)
-
-    novo_individuo_a = individuo_a[:corte] + individuo_b[corte:]
-    novo_individuo_b = individuo_b[:corte] + individuo_a[corte:]
+def cruzamento(individuo_a, individuo_b, porcentagem=0.90, num_cortes=1):
+    
+    if random.random() < porcentagem:
+        cortes_disponiveis = [0.05, 0.10, 0.15, 0.20, 0.25, 
+                              0.30, 0.35, 0.40, 0.45, 0.50, 
+                              0.55, 0.60, 0.65, 0.70, 0.75,
+                              0.80, 0.85, 0.90, 0.95]
+        
+        # Garante que o número de cortes não seja maior do que o número de cortes possíveis
+        num_cortes = min(num_cortes, len(cortes_disponiveis))
+        
+        # Seleciona os pontos de corte aleatórios
+        cortes = sorted(random.sample(cortes_disponiveis, num_cortes))
+        cortes = [int(len(individuo_a) * corte) for corte in cortes]
+        
+        # Inicializa os novos indivíduos
+        novo_individuo_a = individuo_a[:]
+        novo_individuo_b = individuo_b[:]
+        
+        # Aplica os cortes alternando segmentos
+        for i, corte in enumerate(cortes):
+            if i % 2 == 0:
+                # Alterna segmentos entre os indivíduos
+                novo_individuo_a[corte:], novo_individuo_b[corte:] = individuo_b[corte:], individuo_a[corte:]
+    
+    else:
+        # Se o cruzamento não ocorrer, os indivíduos permanecem os mesmos
+        novo_individuo_a = individuo_a[:]
+        novo_individuo_b = individuo_b[:]
     
     return novo_individuo_a, novo_individuo_b
 
@@ -224,7 +248,6 @@ def cromossomo_list_to_dict(lista, caso):
             cromossomo[turma][dia] = lista[inicio:fim]
     
     return cromossomo
-
 def ordenar_populacao_por_fitness(populacao):
     # Ordena a população pela chave fitness, do maior para o menor
     populacao_ordenada = sorted(populacao, key=calcular_fitness, reverse=True)
@@ -271,7 +294,7 @@ def salvar_html(html, nome_arquivo):
 
 # Exemplo de uso:
 caso = 2
-tam_populacao = 1000
+tam_populacao = 200
 geracoes = 10
 populacao = []
 
@@ -300,20 +323,25 @@ for i in range(geracoes):
         novo_individuo1, novo_individuo2 = cruzamento(
             cromossomo_dict_to_list(populacao_selecionada[index_a]),
             cromossomo_dict_to_list(populacao_selecionada[index_b]),
-            porcentagem=0.5
+            porcentagem=0.90
         )
-        
         novo_individuo1 = cromossomo_list_to_dict(novo_individuo1, caso)
         novo_individuo2 = cromossomo_list_to_dict(novo_individuo2, caso)
+        
+        # if random.random() < 0.10:
+        #     novo_individuo1 = mutacao(novo_individuo1)
+        # if random.random() < 0.10:
+        #     novo_individuo2 = mutacao(novo_individuo2)
         
         nova_populacao.append(novo_individuo1)
         nova_populacao.append(novo_individuo2)
 
     populacao = ordenar_populacao_por_fitness(nova_populacao)
 
+melhor_individuo = populacao[0]
 
-ultimo_individuo = populacao[-1]  
-
+fitness_melhor_individuo = calcular_fitness(melhor_individuo)
+print(f"Fitness do melhor indivíduo: {fitness_melhor_individuo}")
 def cromossomo_valido(cromossomo):
     for periodo in cromossomo:
         disciplinas_periodo = set(disciplina_info['nome'] for disciplina_info in disciplina_por_periodo[periodo])
@@ -347,14 +375,14 @@ def cromossomo_valido(cromossomo):
     return True  
 
 # Uso da função para verificar a validade do cromossomo
-if cromossomo_valido(ultimo_individuo):
+if cromossomo_valido(melhor_individuo):
     print("O cromossomo é válido (sem penalidades hard).")
 else:
     print("O cromossomo é inválido (com penalidades hard).")
 
 
 # Gerar tabela HTML para o último indivíduo
-html_tabela = gerar_tabela_html_do_cromossomo(ultimo_individuo, caso)
+html_tabela = gerar_tabela_html_do_cromossomo(melhor_individuo, caso)
 nome_arquivo = "cronograma_ultimo_individuo.html"
 
 # Salvar o HTML gerado
