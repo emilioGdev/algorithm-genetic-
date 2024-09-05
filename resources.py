@@ -98,7 +98,7 @@ professores_horario = {
         "Quinta": ["13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
-    "Helaine Solange": {
+    "Helaine Barreiros": {
         "Segunda": [],
         "Terça": [],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
@@ -344,7 +344,7 @@ professores_info = {
     "Emanoel Francisco": {"tipo": "gestao", "max_horas": 16},
     "Cleiton Martins": {"tipo": "normal", "max_horas": 16},
     "Eraylson Galdino": {"tipo": "gestao", "max_horas": 16},
-    "Helaine Barreiros": {"tipo": "afastamento", "max_horas": 0},
+    "Helaine Barreiros": {"tipo": "afastamento", "max_horas": 16},
     "Ivaldir Honório": {"tipo": "gestao", "max_horas": 16},
     "Mariana Maia": {"tipo": "normal", "max_horas": 16},
     "Elvis Melo": {"tipo": "normal", "max_horas": 16},
@@ -353,5 +353,7 @@ professores_info = {
     "Marcello Mendonça": {"tipo": "normal", "max_horas": 16},
     "Janaína Barros": {"tipo": "normal", "max_horas": 16},
     "Milton Perceus": {"tipo": "normal", "max_horas": 16},
+    "Geovany Fernandes": {"tipo": "normal", "max_horas": 16}, 
+    "Felipe Barreto": {"tipo": "normal", "max_horas": 16},
 }
 
