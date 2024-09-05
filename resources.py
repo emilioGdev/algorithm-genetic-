@@ -244,16 +244,16 @@ disciplina_por_periodo = {
     {"nome": "Segurança de Sistemas", "lab": False},
     {"nome": "Projeto II", "lab": True},
     {"nome": "Seminário em Engenharia de Software I", "lab": False},
-    {"nome": "Cadeira Eletiva", "lab": False},
-    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva 1", "lab": False},
+    {"nome": "Cadeira Eletiva 2", "lab": False},
     {"nome": "Disciplina Curricular de Extensão 7", "lab": False}
 ],
     8:[
     {"nome": "Manutenção e Evolução de Software", "lab": True},
     {"nome": "Seminário em Engenharia de Software II", "lab": False},
     {"nome": "Computação Gráfica e Sistemas Multimídia", "lab": True},
-    {"nome": "Cadeira Eletiva", "lab": False},
-    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva 3", "lab": False},
+    {"nome": "Cadeira Eletiva 4", "lab": False},
     {"nome": "Disciplina Curricular de Extensão 8", "lab": False}
 ]
 }
