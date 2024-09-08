@@ -161,13 +161,13 @@ def calcular_penalidades(cromossomo):
                 professores_no_slot = [aula[1] for aula in aulas]
                 if len(professores_no_slot) != len(set(professores_no_slot)):
                     penalidades += PENALIDADE_HARD
-                    print(f"Adicionada PENALIDADE_HARD por conflito de professores no período {periodo}, dia {dia}, slot {slot}. Professores: {professores_no_slot}")
+                  #  print(f"Adicionada PENALIDADE_HARD por conflito de professores no período {periodo}, dia {dia}, slot {slot}. Professores: {professores_no_slot}")
 
         # Penalidade hard: Verificar se todas as disciplinas do período estão ofertadas
         disciplinas_nao_ofertadas = disciplinas_periodo - disciplinas_alocadas
         if disciplinas_nao_ofertadas:
             penalidades += PENALIDADE_HARD * len(disciplinas_nao_ofertadas)
-            print(f"Adicionada PENALIDADE_HARD por disciplinas não ofertadas no período {periodo}: {disciplinas_nao_ofertadas}")
+           # print(f"Adicionada PENALIDADE_HARD por disciplinas não ofertadas no período {periodo}: {disciplinas_nao_ofertadas}")
 
     return penalidades
 
@@ -194,30 +194,68 @@ def cruzamento(individuo_a, individuo_b, porcentagem=0.90, num_cortes=1):
                               0.55, 0.60, 0.65, 0.70, 0.75,
                               0.80, 0.85, 0.90, 0.95]
         
-        # Garante que o número de cortes não seja maior do que o número de cortes possíveis
+      
         num_cortes = min(num_cortes, len(cortes_disponiveis))
         
-        # Seleciona os pontos de corte aleatórios
+        
         cortes = sorted(random.sample(cortes_disponiveis, num_cortes))
         cortes = [int(len(individuo_a) * corte) for corte in cortes]
         
-        # Inicializa os novos indivíduos
+        
         novo_individuo_a = individuo_a[:]
         novo_individuo_b = individuo_b[:]
         
-        # Aplica os cortes alternando segmentos
+      
         for i, corte in enumerate(cortes):
             if i % 2 == 0:
-                # Alterna segmentos entre os indivíduos
+               
                 novo_individuo_a[corte:], novo_individuo_b[corte:] = individuo_b[corte:], individuo_a[corte:]
     
     else:
-        # Se o cruzamento não ocorrer, os indivíduos permanecem os mesmos
+       
         novo_individuo_a = individuo_a[:]
         novo_individuo_b = individuo_b[:]
     
     return novo_individuo_a, novo_individuo_b
 
+
+def mutacao(cromossomo, taxa_mutacao=0.9):
+    dias_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+
+    for turma, horarios in cromossomo.items():
+        for dia in dias_semana:
+            i = 0
+            while i < len(horarios[dia]):
+                slot = horarios[dia][i]
+                
+                if random.random() < taxa_mutacao:
+                    if slot:  
+                        disciplina = slot[0]  
+                        
+                        if disciplina not in responsabilidade_professores:
+                            i += 1
+                            continue
+                        
+                        bloco = [slot]  
+                        
+                        while i + 1 < len(horarios[dia]) and horarios[dia][i + 1] == slot:
+                            bloco.append(horarios[dia][i + 1])
+                            i += 1
+                        
+                        professores = responsabilidade_professores[disciplina]
+                        
+                        novo_professor = random.choice(professores)
+                        
+              
+                        for novo_dia in dias_semana:
+                            if all(h == "" for h in horarios[novo_dia][:len(bloco)]):
+                                horarios[novo_dia][:len(bloco)] = bloco
+                                break
+                            
+                        horarios[dia][:len(bloco)] = [""] * len(bloco)
+                i += 1
+
+    return cromossomo
 def cromossomo_dict_to_list(cromossomo):
     # Mapeia dias da semana para seus índices
     dias_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
@@ -293,7 +331,7 @@ def salvar_html(html, nome_arquivo):
     print(f"Arquivo '{nome_arquivo}' salvo com sucesso.")
 
 # Exemplo de uso:
-caso = 2
+caso = 1
 tam_populacao = 200
 geracoes = 10
 populacao = []
@@ -305,14 +343,14 @@ for _ in range(tam_populacao):
 for i in range(geracoes):
     populacao = ordenar_populacao_por_fitness(populacao)
 
-    print(f"Populacao Geracao {i + 1}")
+    print(f"População Geração {i + 1}")
     for j in range(min(5, len(populacao))):
         print(calcular_fitness(populacao[j]))
 
     nova_populacao = []
 
     tam_populacao_fixa = int(tam_populacao * 0.2)
-    nova_populacao.extend(populacao[:tam_populacao_fixa])
+    nova_populacao.extend(populacao[:tam_populacao_fixa])  # Preserva parte da população original
 
     tam_populacao_gerada = tam_populacao - tam_populacao_fixa
 
@@ -320,24 +358,26 @@ for i in range(geracoes):
         populacao_selecionada = random.sample(populacao, 3)
         index_a, index_b = melhores_pais(populacao_selecionada)
         
+       
         novo_individuo1, novo_individuo2 = cruzamento(
             cromossomo_dict_to_list(populacao_selecionada[index_a]),
             cromossomo_dict_to_list(populacao_selecionada[index_b]),
             porcentagem=0.90
         )
+      
         novo_individuo1 = cromossomo_list_to_dict(novo_individuo1, caso)
         novo_individuo2 = cromossomo_list_to_dict(novo_individuo2, caso)
         
-        # if random.random() < 0.10:
-        #     novo_individuo1 = mutacao(novo_individuo1)
-        # if random.random() < 0.10:
-        #     novo_individuo2 = mutacao(novo_individuo2)
         
+        novo_individuo1 = mutacao(novo_individuo1, taxa_mutacao=0.9) 
+        novo_individuo2 = mutacao(novo_individuo2, taxa_mutacao=0.9)
+        
+      
         nova_populacao.append(novo_individuo1)
         nova_populacao.append(novo_individuo2)
 
+   
     populacao = ordenar_populacao_por_fitness(nova_populacao)
-
 melhor_individuo = populacao[0]
 
 fitness_melhor_individuo = calcular_fitness(melhor_individuo)
