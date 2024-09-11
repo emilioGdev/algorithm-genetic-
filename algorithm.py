@@ -248,9 +248,10 @@ def mutacao(cromossomo, taxa_mutacao=0.9):
                         
               
                         for novo_dia in dias_semana:
-                            if all(h == "" for h in horarios[novo_dia][:len(bloco)]):
-                                horarios[novo_dia][:len(bloco)] = bloco
-                                break
+                            if novo_professor in professores_horario and novo_dia in professores_horario[novo_professor]:
+                                if all(h == "" for h in horarios[novo_dia][:len(bloco)]):
+                                    horarios[novo_dia][:len(bloco)] = bloco
+                                    break
                             
                         horarios[dia][:len(bloco)] = [""] * len(bloco)
                 i += 1
