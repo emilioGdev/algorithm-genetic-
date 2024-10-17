@@ -45,7 +45,7 @@ horario1 = {
             [('Cálculo I', 'Janaína Barros', None)],
             [('Cálculo I', 'Janaína Barros', None)],
             [('Disciplina Curricular de Extensão 1', 'Mariana Maia', None)],
-             [('Disciplina Curricular de Extensão 1', 'Mariana Maia', None)], [], [], [], [],
+            [('Disciplina Curricular de Extensão 1', 'Mariana Maia', None)], [], [], [], [],
         ]
     },
     3: {
@@ -63,7 +63,7 @@ horario1 = {
             [], [], [], [], 
         ],
         'Quarta': [
-            [('Disciplina Curricular de Extensão 3', 'Ewerton Mendonça', None)],
+            [('Disciplina Curricular de Extensão 3', 'Victor Santos', None)],
             [('Disciplina Curricular de Extensão 3', 'Victor Santos', None)],
             [('Programação III', 'Emanoel Francisco', 'linux')],
             [('Programação III', 'Emanoel Francisco', 'linux')],

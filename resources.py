@@ -335,7 +335,7 @@ responsabilidade_professores = {
 
 professores_info = {
     "Brunno Wagner": {"tipo": "normal", "max_horas": 16},
-    "Cleverton Silva": {"tipo": "temporario", "max_horas": 12},
+    "Cleverton Silva": {"tipo": "normal", "max_horas": 16},
     "Victor Santos": {"tipo": "normal", "max_horas": 16},
     "Elisson Rocha": {"tipo": "normal", "max_horas": 16},
     "Ewerton Mendonça": {"tipo": "normal", "max_horas": 16},
@@ -349,7 +349,7 @@ professores_info = {
     "Ivaldir Honório": {"tipo": "gestao", "max_horas": 16},
     "Mariana Maia": {"tipo": "normal", "max_horas": 16},
     "Elvis Melo": {"tipo": "normal", "max_horas": 16},
-    "Felipe Anchieta": {"tipo": "temporario", "max_horas": 12},
+    "Felipe Anchieta": {"tipo": "normal", "max_horas": 16},
     "Renato Silvestre": {"tipo": "normal", "max_horas": 16},
     "Marcello Mendonça": {"tipo": "normal", "max_horas": 16},
     "Janaína Barros": {"tipo": "normal", "max_horas": 16},

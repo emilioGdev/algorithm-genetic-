@@ -12,7 +12,7 @@ def criar_cromossomo(caso):
         periodos = [1, 3, 5, 7]
     elif caso == 2:
         periodos = [2, 4, 6, 8]
-    else:
+    else:   
         raise ValueError("Caso deve ser 1 ou 2")
 
     while True:
@@ -76,8 +76,8 @@ def ordenar_populacao_por_fitness(populacao):
     return populacao_ordenada
 
 
-caso = 2
-tam_populacao = 10
+caso = 1
+tam_populacao = 1000
 geracoes = 10
 populacao = []
 

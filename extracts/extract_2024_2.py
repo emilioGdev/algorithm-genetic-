@@ -33,8 +33,7 @@ horario_2 = {
             [('Metodologia Científica', 'Ivaldir Honório', None)], 
             [('Disciplina Curricular de Extensão 2', 'Ivaldir Honório', None)],
             [('Disciplina Curricular de Extensão 2', 'Ivaldir Honório', None)],
-            [('Disciplina Curricular de Extensão 2', 'Ivaldir Honório', None)], 
-            [], 
+            [], [], 
         ],
         'Quinta': [
             [('Álgebra Linear', 'Renato Silvestre', None)],
@@ -169,7 +168,6 @@ horario_2 = {
             [('Tópicos Avançados em Engenharia de Software e Sistemas I', 'Victor Santos', None)],
             [('Tópicos Avançados em Engenharia de Software e Sistemas I', 'Victor Santos', None)],
             [('Tópicos Avançados em Engenharia de Software e Sistemas I', 'Victor Santos', None)],
-            [('Tópicos Avançados em Engenharia de Software e Sistemas I', 'Victor Santos', None)],  
             [('Cadeira Eletiva', 'Elisson Rocha', None)],
             [('Cadeira Eletiva', 'Elisson Rocha', None)],
             [('Cadeira Eletiva', 'Elisson Rocha', None)],
@@ -177,8 +175,8 @@ horario_2 = {
         ],
         'Quinta': [
             [('Disciplina Curricular de Extensão 8', 'Mariana Maia', None)],
-            [('Disciplina Curricular de Extensão 8', 'Mariana Maia', None)], 
-            [],  [],  [],  [], 
+            [('Disciplina Curricular de Extensão 8', 'Mariana Maia', None)],
+            [],  [],  [], 
             [('Seminário em Engenharia de Software II', 'Marcello Mendonça', None)],
             [('Seminário em Engenharia de Software II', 'Marcello Mendonça', None)],
             [],  [], 
