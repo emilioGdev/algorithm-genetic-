@@ -1,4 +1,3 @@
-# Defina os dados iniciais
 import random
 
 professores = ["Brunno Wagner",
@@ -17,7 +16,7 @@ professores = ["Brunno Wagner",
 "Marcello Mendonça",
 "Eraylson Galdino",
 "Ariane Nunes",
-"Victor Ferreira",
+"Victor Santos",
 "Felipe Barreto",
 "Aêda Monalliza",
 "Janaína Barros",
@@ -254,6 +253,8 @@ disciplina_por_periodo = {
     {"nome": "Computação Gráfica e Sistemas Multimídia", "lab": True},
     {"nome": "Cadeira Eletiva", "lab": False},
     {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva", "lab": False},
     {"nome": "Disciplina Curricular de Extensão 8", "lab": False}
 ]
 }
@@ -265,7 +266,7 @@ carga_horaria_por_periodo = {
     5: [60, 60, 60, 60, 60, 60, 45],
     6: [60, 60, 60, 60, 60, 60, 45],
     7: [60, 60, 60, 30, 60, 60, 45],
-    8: [60, 30, 60, 60, 60, 30],
+    8: [60, 30, 60, 60, 60, 60, 60, 30],
 }
 
 
@@ -290,7 +291,7 @@ responsabilidade_professores = {
     "Programação II": ["Emanoel Francisco", "Aêda Monalliza", "Elisson Rocha"],
     "Matemática Discreta": ["Geovany Fernandes"],
     "Metodologia Científica": ["Ivaldir Honório", "Elvis Melo", "Marcello Mendonça"],
-    "Cálculo II": ["Felipe Barreto"],
+    "Cálculo II": ["Felipe Barreto", "Paulo Júnior"],
     "Disciplina Curricular de Extensão 2": ["Cleverton Silva", "Adauto Trigueiro", "Elisson Rocha", "Ivaldir Honório"],
     "Programação III": ["Emanoel Francisco"],
     "Engenharia de Requisitos": ["Mariana Maia"],
@@ -355,5 +356,6 @@ professores_info = {
     "Milton Perceus": {"tipo": "normal", "max_horas": 16},
     "Geovany Fernandes": {"tipo": "normal", "max_horas": 16}, 
     "Felipe Barreto": {"tipo": "normal", "max_horas": 16},
+    "Paulo Júnior":{"tipo": "normal", "max_horas": 16}
 }
 
