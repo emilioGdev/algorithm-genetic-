@@ -154,10 +154,10 @@ horario1 = {
         ],
         'Quarta': [
             [], [],
-            [('Cadeira Eletiva', 'Ewerton Mendonça', None)],
-            [('Cadeira Eletiva', 'Ewerton Mendonça', None)],
-            [('Cadeira Eletiva', 'Ewerton Mendonça', None)],
-            [('Cadeira Eletiva', 'Ewerton Mendonça', None)], [], [], [], [],
+            [('Tópicos Avançados em Engenharia de Software', 'Ewerton Mendonça', None)],
+            [('Tópicos Avançados em Engenharia de Software', 'Ewerton Mendonça', None)],
+            [('Tópicos Avançados em Engenharia de Software', 'Ewerton Mendonça', None)],
+            [('Tópicos Avançados em Engenharia de Software', 'Ewerton Mendonça', None)], [], [], [], [],
         ],
         'Quinta': [
             [('Seminário em Engenharia de Software I', 'Marcello Mendonça', None)],
@@ -169,10 +169,10 @@ horario1 = {
         ],
         'Sexta': [
             [], [],
-            [('Cadeira Eletiva', 'Ariane Nunes', 'linux')],
-            [('Cadeira Eletiva', 'Ariane Nunes', 'linux')],
-            [('Cadeira Eletiva', 'Ariane Nunes', 'linux')],
-            [('Cadeira Eletiva', 'Ariane Nunes', 'linux')],
+            [('Engenharia de Software Educativo', 'Ariane Nunes', 'linux')],
+            [('Engenharia de Software Educativo', 'Ariane Nunes', 'linux')],
+            [('Engenharia de Software Educativo', 'Ariane Nunes', 'linux')],
+            [('Engenharia de Software Educativo', 'Ariane Nunes', 'linux')],
             [], [], [], [], 
         ]
     }

@@ -2,10 +2,10 @@ import random
 from alocation.alocations import distribuir_aulas_por_periodo
 from save.save_html import gerar_tabela_html_do_cromossomo, salvar_html
 from operation.operations import cruzamento, mutacao
-from resources import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
+from resources_2024_2 import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 import matplotlib.pyplot as plt
 import numpy as np
-from validation.penalities import calcular_fitness
+from validation.penalities import calcular_fitness, cromossomo_valido
 
 def criar_cromossomo(caso):
     if caso == 1:
@@ -76,9 +76,9 @@ def ordenar_populacao_por_fitness(populacao):
     return populacao_ordenada
 
 
-caso = 1
+caso = 2
 tam_populacao = 1000
-geracoes = 10
+geracoes = 20
 populacao = []
 
 fitness_medio_por_geracao = []
@@ -169,3 +169,9 @@ fitness_1 = calcular_fitness(melhor_individuo)
 nome_arquivo = "cronograma_ultimo_individuo.html"
 
 salvar_html(html_tabela, nome_arquivo)
+
+
+if cromossomo_valido(melhor_individuo):
+    print("O cromossomo é válido (sem penalidades hard).")
+else:
+    print("O cromossomo é inválido (com penalidades hard).")

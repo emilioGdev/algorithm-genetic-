@@ -1,4 +1,4 @@
-from resources import dias_da_semana, horarios_manha, horarios_tarde
+from resources_2024_2 import dias_da_semana, horarios_manha, horarios_tarde
 
 
 def gerar_tabela_html_do_cromossomo(cromossomo, caso):

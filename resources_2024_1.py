@@ -1,4 +1,3 @@
-import random
 
 professores = ["Brunno Wagner",
 "Geovany Fernandes",
@@ -32,18 +31,17 @@ dias_da_semana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
 horarios_manha = ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"]
 horarios_tarde = ["13h30", "14h30", "15h30", "16h30"]
 
-
 professores_horario = {
     "Adauto Trigueiro": {
         "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Terça": [],
         "Quarta": [],
-        "Quinta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
     "Aêda Monalliza": {
-        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Segunda": [],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": [],
         "Quinta": [],
         "Sexta": [],
@@ -52,7 +50,7 @@ professores_horario = {
         "Segunda": [],
         "Terça": [],
         "Quarta": [],
-        "Quinta": ["13h30", "14h30", "15h30", "16h30"],
+        "Quinta": [],
         "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     },
     "Brunno Wagner": {
@@ -66,22 +64,22 @@ professores_horario = {
         "Segunda": [],
         "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Quinta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": [],
     },
     "Cleverton Silva": {
-        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
-        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Segunda": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": [],
-        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
+        "Quinta": [],
         "Sexta": []
     },
     "Emanoel Francisco": {
         "Segunda": [],
-        "Terça": [],
-        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
-        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"],
-        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40"]
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Sexta": []
     },
     "Ewerton Mendonça": {
         "Segunda": [],
@@ -92,17 +90,17 @@ professores_horario = {
     },
     "Felipe Barreto": {
         "Segunda": [],
-        "Terça": ["7h30", "8h20", "9h10", "10h50"],
-        "Quarta": ["13h30", "14h30", "15h30", "16h30"],
-        "Quinta": ["13h30", "14h30", "15h30", "16h30"],
+        "Terça": [],
+        "Quarta": [],
+        "Quinta": [],
         "Sexta": []
     },
     "Helaine Barreiros": {
         "Segunda": [],
         "Terça": [],
-        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
+        "Quarta": [],
+        "Quinta": [],
+        "Sexta": []
     },
     "Ivaldir Honório": {
         "Segunda": [],
@@ -120,23 +118,23 @@ professores_horario = {
     },
     "Milton Perceus": {
         "Segunda": [],
-        "Terça": ["9h10", "10h00", "10h50", "11h40"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": [],
         "Quinta": [],
         "Sexta": []
     },
     "Geovany Fernandes": {
         "Segunda": [],
-        "Terça": ["7h30", "8h20", "9h10", "10h00"],
+        "Terça": [],
         "Quarta": [],
         "Quinta": [],
         "Sexta": []
     },
     "Renato Silvestre": {
         "Segunda": [],
-        "Terça": [],
-        "Quarta": ["7h30", "8h20", "9h10", "10h00"],
-        "Quinta": ["7h30", "8h20", "9h10", "10h00"],
+        "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
     "Elvis Melo": {
@@ -144,7 +142,7 @@ professores_horario = {
         "Terça": [],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
+        "Sexta": []
     },
     "Elisson Rocha": {
         "Segunda": [],
@@ -157,14 +155,14 @@ professores_horario = {
         "Segunda": [],
         "Terça": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
-        "Quinta": [],
+        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": []
     },
     "Eraylson Galdino": {
         "Segunda": [],
         "Terça": [],
         "Quarta": [],
-        "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
+        "Quinta": [],
         "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     },
     "Janaína Barros": {
@@ -172,16 +170,90 @@ professores_horario = {
         "Terça": [],
         "Quarta": [],
         "Quinta": [],
-        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", ]
+        "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     },
     "Mariana Maia": {
         "Segunda": [],
         "Terça": [],
-        "Quarta": [],
+        "Quarta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Quinta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"],
         "Sexta": ["7h30", "8h20", "9h10", "10h00", "10h50", "11h40", "13h30", "14h30", "15h30", "16h30"]
     }
 }
+
+
+
+
+responsabilidade_professores = {
+    "Geometria Analítica": ["Renato Silvestre"],
+    "Programação I": ["Adauto Trigueiro"],
+    "Computação Ética e Sociedade": ["Cleverton Silva"],
+    "Empreendedorismo e Inovação": ["Ivaldir Honório"],
+    "Cálculo I": ["Janaína Barros"],
+    "Introdução à Computação": ["Cleverton Silva"],
+    "Disciplina Curricular de Extensão 1": ["Mariana Maia"],
+
+    "Processos de Software": ["Brunno Wagner", "Ewerton Mendonça"],
+    "Álgebra Linear": ["Renato Silvestre"],
+    "Programação II": ["Emanoel Francisco", "Aêda Monalliza", "Elisson Rocha"],
+    "Matemática Discreta": ["Geovany Fernandes"],
+    "Metodologia Científica": ["Ivaldir Honório", "Elvis Melo", "Marcello Mendonça"],
+    "Cálculo II": ["Felipe Barreto", "Paulo Júnior"],
+    "Disciplina Curricular de Extensão 2": ["Cleverton Silva", "Adauto Trigueiro", "Elisson Rocha", "Ivaldir Honório"],
+
+
+    "Programação III": ["Emanoel Francisco"],
+    "Engenharia de Requisitos": ["Mariana Maia"],
+    "Projeto de Software": ["Ewerton Mendonça"],
+    "Estatística I": ["Milton Perceus"],
+    "Banco de Dados": ["Victor Santos"],
+    "Algoritmos e Estruturas de Dados": ["Victor Santos"],
+    "Disciplina Curricular de Extensão 3": ["Ewerton Mendonça", "Victor Santos"],
+
+
+    "Gerência de Configuração": ["Ewerton Mendonça"],
+    "Programação para Web": ["Helaine Barreiros", "Elisson Rocha", "Ewerton Mendonça"],
+    "Padrões de Projeto": ["Ewerton Mendonça", "Brunno Wagner"],
+    "Estatística II": ["Milton Perceus"],
+    "Organização e Arquitetura de Computadores": ["Cleiton Martins"],
+    "Teoria da Computação": ["Brunno Wagner"],
+    "Disciplina Curricular de Extensão 4": ["Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+
+
+    "Gerência de Projetos": ["Aêda Monalliza"],
+    "Programação para Dispositivos Móveis": ["Elisson Rocha"],
+    "Verificação e Validação de Sistemas": ["Brunno Wagner"],
+    "Projeto I": ["Marcello Mendonça", "Ivaldir Honório"],
+    "Paradigmas de Linguagens de Programação": ["Eraylson Galdino"],
+    "Redes de Computadores": ["Cleiton Martins"],
+    "Disciplina Curricular de Extensão 5": ["Cleverton Silva"],
+
+
+    "Arquitetura de Software": ["Brunno Wagner"],
+    "Engenharia de Software Experimental": ["Adauto Trigueiro"],
+    "Integração de Sistemas": ["Elisson Rocha"],
+    "Inteligência Artificial": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
+    "Interação Humano-Computador": ["Ariane Nunes"],
+    "Sistemas Operacionais": ["Cleiton Martins"],
+    "Disciplina Curricular de Extensão 6": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+
+
+    "Qualidade de Software": ["Brunno Wagner"],
+    "Segurança de Sistemas": ["Cleiton Martins"],
+    "Projeto II": ["Mariana Maia"],
+    "Seminário em Engenharia de Software I": ["Marcello Mendonça"],
+    "Disciplina Curricular de Extensão 7": ["Cleverton Silva"],
+    "Engenharia de Software Educativo": ["Ariane Nunes"],
+    "Tópicos Avançados em Engenharia de Software": ["Ewerton Mendonça"],
+
+
+    "Cadeira Eletiva": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
+    "Manutenção e Evolução de Software": ["Victor Santos"],
+    "Seminário em Engenharia de Software II": ["Marcello Mendonça", "Elvis Melo", "Victor Ferreira"],
+    "Computação Gráfica e Sistemas Multimídia": ["Ewerton Mendonça"],
+    "Disciplina Curricular de Extensão 8": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
+}
+
 
 disciplina_por_periodo = {
     1:[
@@ -243,8 +315,8 @@ disciplina_por_periodo = {
     {"nome": "Segurança de Sistemas", "lab": False},
     {"nome": "Projeto II", "lab": True},
     {"nome": "Seminário em Engenharia de Software I", "lab": False},
-    {"nome": "Cadeira Eletiva", "lab": False},
-    {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Engenharia de Software Educativo", "lab": False},
+    {"nome": "Tópicos Avançados em Engenharia de Software", "lab": False},
     {"nome": "Disciplina Curricular de Extensão 7", "lab": False}
 ],
     8:[
@@ -254,9 +326,11 @@ disciplina_por_periodo = {
     {"nome": "Cadeira Eletiva", "lab": False},
     {"nome": "Cadeira Eletiva", "lab": False},
     {"nome": "Cadeira Eletiva", "lab": False},
+    {"nome": "Cadeira Eletiva", "lab": False},
     {"nome": "Disciplina Curricular de Extensão 8", "lab": False}
 ]
 }
+
 carga_horaria_por_periodo = {
     1: [60, 90, 30, 60, 60, 60, 45],
     2: [60, 60, 90, 60, 60, 60, 45],
@@ -264,73 +338,10 @@ carga_horaria_por_periodo = {
     4: [60, 60, 60, 60, 60, 60, 45],
     5: [60, 60, 60, 60, 60, 60, 45],
     6: [60, 60, 60, 60, 60, 60, 45],
-    7: [60, 60, 60, 30, 60, 60, 45],
-    8: [60, 30, 60, 60, 60, 60, 45],
+    7: [60, 60, 60, 60, 60, 60, 45],
+    8: [60, 30, 60, 60, 60, 60, 60, 45],
 }
 
-
-disciplinas_eletivas = [ "Libras", "Educação das Relações Étnico-Raciais", "Educação Ambiental", "Aprendizagem de Máquina e Reconhecimento de Padrões", "Tópicos Avançados em Computação Inteligente",
-                         "Tópicos Avançados em Computação Teórica", "Tópicos Avançados em Engenharia de Software e Sistemas I", "Tópicos Avançados em Engenharia de Software e Sistemas II",
-                         "Tópicos Avançados em Engenharia de Software e Sistemas III", "Tópicos Avançados em Engenharia de Software e Sistemas IV", "Tópicos Avançados em Gerenciamento de Dados e Informação",
-                         "Engenharia de Software Educativo", "Tecnologias Assistivas"]
-
-
-cursos = ["Engenharia de software", "Licenciatura de Computação", "Matemática"]
-
-responsabilidade_professores = {
-    "Geometria Analítica": ["Renato Silvestre"],
-    "Programação I": ["Adauto Trigueiro", "Elisson Rocha"],
-    "Computação Ética e Sociedade": ["Ariane Nunes", "Cleverton Silva"],
-    "Empreendedorismo e Inovação": ["Marcello Mendonça", "Ivaldir Honório"],
-    "Cálculo I": ["Janaína Barros"],
-    "Introdução à Computação": ["Cleverton Silva", "Elvis Melo"],
-    "Disciplina Curricular de Extensão 1": ["Cleverton Silva", "Elvis Melo", "Ariane Nunes"],
-    "Processos de Software": ["Brunno Wagner", "Ewerton Mendonça"],
-    "Álgebra Linear": ["Renato Silvestre"],
-    "Programação II": ["Emanoel Francisco", "Aêda Monalliza", "Elisson Rocha"],
-    "Matemática Discreta": ["Geovany Fernandes"],
-    "Metodologia Científica": ["Ivaldir Honório", "Elvis Melo", "Marcello Mendonça"],
-    "Cálculo II": ["Felipe Barreto", "Paulo Júnior"],
-    "Disciplina Curricular de Extensão 2": ["Cleverton Silva", "Adauto Trigueiro", "Elisson Rocha", "Ivaldir Honório"],
-    "Programação III": ["Emanoel Francisco"],
-    "Engenharia de Requisitos": ["Mariana Maia"],
-    "Projeto de Software": ["Ewerton Mendonça"],
-    "Estatística I": ["Milton Perceus"],
-    "Banco de Dados": ["Victor Santos", "Elisson Rocha"],
-    "Algoritmos e Estruturas de Dados": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
-    "Disciplina Curricular de Extensão 3": ["Cleverton Silva", "Adauto Trigueiro", "Elisson Rocha", "Ivaldir Honório"],
-    "Gerência de Configuração": ["Ewerton Mendonça"],
-    "Programação para Web": ["Helaine Barreiros", "Elisson Rocha", "Ewerton Mendonça"],
-    "Padrões de Projeto": ["Ewerton Mendonça", "Brunno Wagner"],
-    "Estatística II": ["Milton Perceus"],
-    "Organização e Arquitetura de Computadores": ["Cleiton Martins"],
-    "Teoria da Computação": ["Brunno Wagner"],
-    "Disciplina Curricular de Extensão 4": ["Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
-    "Gerência de Projetos": ["Aêda Monalliza", "Helaine Barreiros"],
-    "Programação para Dispositivos Móveis": ["Elisson Rocha", "Ewerton Mendonça"],
-    "Verificação e Validação de Sistemas": ["Brunno Wagner"],
-    "Projeto I": ["Marcello Mendonça", "Helaine Barreiros"],
-    "Paradigmas de Linguagens de Programação": ["Emanoel Francisco", "Eraylson Galdino"],
-    "Redes de Computadores": ["Cleiton Martins"],
-    "Disciplina Curricular de Extensão 5": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
-    "Arquitetura de Software": ["Brunno Wagner"],
-    "Engenharia de Software Experimental": ["Adauto Trigueiro"],
-    "Integração de Sistemas": ["Elisson Rocha"],
-    "Inteligência Artificial": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
-    "Interação Humano-Computador": ["Ariane Nunes"],
-    "Sistemas Operacionais": ["Cleiton Martins"],
-    "Disciplina Curricular de Extensão 6": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
-    "Qualidade de Software": ["Brunno Wagner"],
-    "Segurança de Sistemas": ["Cleiton Martins"],
-    "Projeto II": ["Mariana Maia", "Marcello Mendonça"],
-    "Seminário em Engenharia de Software I": ["Marcello Mendonça", "Elvis Melo", "Victor Ferreira"],
-    "Disciplina Curricular de Extensão 7": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
-    "Cadeira Eletiva": ["Victor Santos", "Elisson Rocha", "Eraylson Galdino"],
-    "Manutenção e Evolução de Software": ["Victor Santos"],
-    "Seminário em Engenharia de Software II": ["Marcello Mendonça", "Elvis Melo", "Victor Ferreira"],
-    "Computação Gráfica e Sistemas Multimídia": ["Ewerton Mendonça"],
-    "Disciplina Curricular de Extensão 8": ["Cleverton Silva", "Brunno Wagner", "Cleiton Martins", "Ewerton Mendonça", "Elvis Melo"],
-}
 
 professores_info = {
     "Brunno Wagner": {"tipo": "normal", "max_horas": 16},
