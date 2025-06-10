@@ -2,8 +2,9 @@ import random
 from alocation.alocations import distribuir_aulas_por_periodo
 from save.save_html import gerar_tabela_html_do_cromossomo, salvar_html
 from operation.operations import cruzamento, mutacao
-from resources_2024_2 import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
+#from resources_2024_2 import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 import matplotlib.pyplot as plt
+from resources import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo, carga_horaria_por_periodo
 import numpy as np
 from validation.penalities import calcular_fitness, cromossomo_valido
 

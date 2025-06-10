@@ -1,4 +1,4 @@
-from resources_2024_1 import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo
+from resources import dias_da_semana, horarios_manha, horarios_tarde, disciplina_por_periodo
 
 PENALIDADE_HARD = 100
 PENALIDADE_SOFT = 1

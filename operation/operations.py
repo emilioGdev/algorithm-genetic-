@@ -1,5 +1,5 @@
 import random
-from resources_2024_2 import professores_horario, responsabilidade_professores
+from resources import professores_horario, responsabilidade_professores
 
 def cruzamento(individuo_a, individuo_b, porcentagem=0.90, num_cortes=1):
     
